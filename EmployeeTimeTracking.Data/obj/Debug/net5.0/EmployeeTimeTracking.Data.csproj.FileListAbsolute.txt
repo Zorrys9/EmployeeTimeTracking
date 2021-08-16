@@ -1,0 +1,15 @@
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Data\obj\Debug\net5.0\EmployeeTimeTracking.Data.csproj.AssemblyReference.cache
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Data\obj\Debug\net5.0\EmployeeTimeTracking.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Data\obj\Debug\net5.0\EmployeeTimeTracking.Data.AssemblyInfoInputs.cache
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Data\obj\Debug\net5.0\EmployeeTimeTracking.Data.AssemblyInfo.cs
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Data\obj\Debug\net5.0\EmployeeTimeTracking.Data.csproj.CoreCompileInputs.cache
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Data\bin\Debug\net5.0\EmployeeTimeTracking.Data.deps.json
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Data\bin\Debug\net5.0\EmployeeTimeTracking.Data.dll
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Data\bin\Debug\net5.0\ref\EmployeeTimeTracking.Data.dll
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Data\bin\Debug\net5.0\EmployeeTimeTracking.Data.pdb
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Data\bin\Debug\net5.0\EmployeeTimeTracking.Common.dll
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Data\bin\Debug\net5.0\EmployeeTimeTracking.Common.pdb
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Data\obj\Debug\net5.0\EmployeeTimeTracking.Data.csproj.CopyComplete
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Data\obj\Debug\net5.0\EmployeeTimeTracking.Data.dll
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Data\obj\Debug\net5.0\ref\EmployeeTimeTracking.Data.dll
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Data\obj\Debug\net5.0\EmployeeTimeTracking.Data.pdb

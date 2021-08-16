@@ -1,0 +1,11 @@
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Common\bin\Debug\net5.0\EmployeeTimeTracking.Common.deps.json
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Common\bin\Debug\net5.0\EmployeeTimeTracking.Common.dll
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Common\bin\Debug\net5.0\ref\EmployeeTimeTracking.Common.dll
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Common\bin\Debug\net5.0\EmployeeTimeTracking.Common.pdb
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Common\obj\Debug\net5.0\EmployeeTimeTracking.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Common\obj\Debug\net5.0\EmployeeTimeTracking.Common.AssemblyInfoInputs.cache
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Common\obj\Debug\net5.0\EmployeeTimeTracking.Common.AssemblyInfo.cs
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Common\obj\Debug\net5.0\EmployeeTimeTracking.Common.csproj.CoreCompileInputs.cache
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Common\obj\Debug\net5.0\EmployeeTimeTracking.Common.dll
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Common\obj\Debug\net5.0\ref\EmployeeTimeTracking.Common.dll
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking.Common\obj\Debug\net5.0\EmployeeTimeTracking.Common.pdb

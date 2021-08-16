@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "aqUJBLNCbPoTuU8vM97iGX/E68SVjVgW1iHfkNYRRzk8TkuZtvFoljRp9lF7ZotWcKbkThbEoGKgemY0ybq0cg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking. Services\\EmployeeTimeTracking.Services.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\asemenov\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\asemenov\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
+    "C:\\Users\\asemenov\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\asemenov\\.nuget\\packages\\npgsql\\5.0.7\\npgsql.5.0.7.nupkg.sha512",
+    "C:\\Users\\asemenov\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
+    "C:\\Users\\asemenov\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
+  ],
+  "logs": []
+}

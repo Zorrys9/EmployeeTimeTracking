@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>EmployeeTimeTracking._Logic</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EmployeeTimeTracking. Services\EmployeeTimeTracking.Services.csproj" />
+    <ProjectReference Include="..\EmployeeTimeTracking.Common\EmployeeTimeTracking.Common.csproj" />
+  </ItemGroup>
+
+</Project>

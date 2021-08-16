@@ -1,0 +1,268 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking. Logic\\EmployeeTimeTracking.Logic.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking. Logic\\EmployeeTimeTracking.Logic.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking. Logic\\EmployeeTimeTracking.Logic.csproj",
+        "projectName": "EmployeeTimeTracking.Logic",
+        "projectPath": "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking. Logic\\EmployeeTimeTracking.Logic.csproj",
+        "packagesPath": "C:\\Users\\asemenov\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking. Logic\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\asemenov\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking. Services\\EmployeeTimeTracking.Services.csproj": {
+                "projectPath": "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking. Services\\EmployeeTimeTracking.Services.csproj"
+              },
+              "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking.Common\\EmployeeTimeTracking.Common.csproj": {
+                "projectPath": "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking.Common\\EmployeeTimeTracking.Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking. Services\\EmployeeTimeTracking.Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking. Services\\EmployeeTimeTracking.Services.csproj",
+        "projectName": "EmployeeTimeTracking.Services",
+        "projectPath": "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking. Services\\EmployeeTimeTracking.Services.csproj",
+        "packagesPath": "C:\\Users\\asemenov\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking. Services\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\asemenov\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking.Common\\EmployeeTimeTracking.Common.csproj": {
+                "projectPath": "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking.Common\\EmployeeTimeTracking.Common.csproj"
+              },
+              "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking.Data\\EmployeeTimeTracking.Data.csproj": {
+                "projectPath": "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking.Data\\EmployeeTimeTracking.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking.Common\\EmployeeTimeTracking.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking.Common\\EmployeeTimeTracking.Common.csproj",
+        "projectName": "EmployeeTimeTracking.Common",
+        "projectPath": "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking.Common\\EmployeeTimeTracking.Common.csproj",
+        "packagesPath": "C:\\Users\\asemenov\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking.Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\asemenov\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking.Data\\EmployeeTimeTracking.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking.Data\\EmployeeTimeTracking.Data.csproj",
+        "projectName": "EmployeeTimeTracking.Data",
+        "projectPath": "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking.Data\\EmployeeTimeTracking.Data.csproj",
+        "packagesPath": "C:\\Users\\asemenov\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\asemenov\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking.Common\\EmployeeTimeTracking.Common.csproj": {
+                "projectPath": "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking.Common\\EmployeeTimeTracking.Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.90, )"
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[5.0.7, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
