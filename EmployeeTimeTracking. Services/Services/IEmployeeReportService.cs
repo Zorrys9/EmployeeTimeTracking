@@ -10,10 +10,10 @@ namespace EmployeeTimeTracking.Services.Services
     public interface IEmployeeReportService
     {
 
-        Task<Guid> InsertAsync(EmployeeReportModel model);
+        Task<Guid?> InsertAsync(EmployeeReportModel model);
         Task<Guid> DeleteAsync(Guid reportId);
         IEnumerable<EmployeeReportModel> GetByEmployee(Guid employeeId);
-        IEnumerable<EmployeeReportModel> GetByReport(Guid reportId);
+        Guid GetByReport(Guid reportId);
 
 
 

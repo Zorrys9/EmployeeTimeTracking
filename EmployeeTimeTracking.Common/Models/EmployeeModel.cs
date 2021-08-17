@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace EmployeeTimeTracking.Common.Models
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Position { get; set; }
+        public string Avatar { get; set; }
 
     }
 }

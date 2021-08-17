@@ -63,6 +63,11 @@ namespace EmployeeTimeTracking
                 .InstancePerLifetimeScope()
                 .WithParameter("connectionString", connectionString);
 
+            builder.RegisterType<SummaryReportRepository>()
+                .As<ISummaryReportRepository>()
+                .InstancePerLifetimeScope()
+                .WithParameter("connectionString", connectionString);
+
             builder.RegisterType<EmployeeService>()
                 .As<IEmployeeService>()
                 .InstancePerLifetimeScope();
@@ -75,8 +80,16 @@ namespace EmployeeTimeTracking
                 .As<IEmployeeReportService>()
                 .InstancePerLifetimeScope();
 
+            builder.RegisterType<FileService>()
+                .As<IFileService>()
+                .InstancePerLifetimeScope();
+
             builder.RegisterType<TrackingLogic>()
                 .As<ITrackingLogic>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<AccountLogic>()
+                .As<IAccountLogic>()
                 .InstancePerLifetimeScope();
 
             var container = builder.Build();

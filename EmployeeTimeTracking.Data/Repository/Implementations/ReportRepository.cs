@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EmployeeTimeTracking.Common.Models;
+using EmployeeTimeTracking.Common.ViewModels;
 using EmployeeTimeTracking.Data.EntityModels;
 using System;
 using System.Collections.Generic;

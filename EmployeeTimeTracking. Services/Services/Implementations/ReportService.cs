@@ -1,4 +1,5 @@
 ﻿using EmployeeTimeTracking.Common.Models;
+using EmployeeTimeTracking.Common.ViewModels;
 using EmployeeTimeTracking.Data.Repository;
 using EmployeeTimeTracking.Services.Services;
 using System;
@@ -10,10 +11,12 @@ namespace EmployeeTimeTracking._Services.Services.Implementations
     public class ReportService : IReportService
     {
         private readonly IReportRepository _reportRepository;
+        private readonly ISummaryReportRepository _summaryReportRepository;
 
-        public ReportService(IReportRepository reportRepository)
+        public ReportService(IReportRepository reportRepository, ISummaryReportRepository summaryReportRepository)
         {
             _reportRepository = reportRepository;
+            _summaryReportRepository = summaryReportRepository;
         }
 
         public async Task<Guid?> DeleteAsync(Guid id)
@@ -47,6 +50,16 @@ namespace EmployeeTimeTracking._Services.Services.Implementations
                 return null;
             }
             return await _reportRepository.UpdateAsync(model);
+        }
+
+        public SummaryReportViewModel SummaryReportById(Guid id)
+        {
+            return _summaryReportRepository.GetSummaryReportById(id);
+        }
+
+        public IEnumerable<SummaryReportViewModel> SummaryReports()
+        {
+            return _summaryReportRepository.GetSummaryReports();
         }
     }
 }

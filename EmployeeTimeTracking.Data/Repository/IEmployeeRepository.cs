@@ -16,5 +16,7 @@ namespace EmployeeTimeTracking.Data.Repository
         Task<Guid> DeleteAsync(Guid id);
 
         IEnumerable<EmployeeModel> GetAll();
+
+        EmployeeModel GetEmployee(Guid employeeId);
     }
 }

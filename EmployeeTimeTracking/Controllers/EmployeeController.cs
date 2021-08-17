@@ -1,5 +1,7 @@
-﻿using EmployeeTimeTracking._Services.Services;
+﻿using EmployeeTimeTracking._Logic.Logics;
+using EmployeeTimeTracking._Services.Services;
 using EmployeeTimeTracking.Common.Models;
+using EmployeeTimeTracking.Common.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,16 +15,18 @@ namespace EmployeeTimeTracking.Controllers
     public class EmployeeController : Controller
     {
         private readonly IEmployeeService _employeeService;
-        public EmployeeController(IEmployeeService employeeService)
+        private readonly IAccountLogic _accountLogic;
+        public EmployeeController(IEmployeeService employeeService, IAccountLogic accountLogic)
         {
             _employeeService = employeeService;
+            _accountLogic = accountLogic;
         }
         [HttpPost("[action]")]
-        public async Task<IActionResult> Insert([FromForm]EmployeeModel model)
+        public async Task<IActionResult> Insert([FromForm]EmployeeViewModel model)
         {
-            var result = await _employeeService.InsertAsync(model);
+            var result = await _accountLogic.CreateEmployee(model);
 
-            if (result == null)
+            if (!result)
             {
                 return StatusCode(500);
             }
@@ -30,11 +34,11 @@ namespace EmployeeTimeTracking.Controllers
             return Ok();
         }
         [HttpPut("[action]")]
-        public async Task<IActionResult> Update([FromForm] EmployeeModel model)
+        public async Task<IActionResult> Update([FromForm] EmployeeViewModel model)
         {
-            var result = await _employeeService.UpdateAsync(model);
+            var result = await _accountLogic.UpdateEmployee(model);
 
-            if (result == null)
+            if (!result)
             {
                 return StatusCode(500);
             }
@@ -44,9 +48,9 @@ namespace EmployeeTimeTracking.Controllers
         [HttpDelete("[action]")]
         public async Task<IActionResult> Delete([FromForm]Guid id)
         {
-            var result = await _employeeService.DeleteAsync(id);
+            var result = await _accountLogic.DeleteEmployee(id);
 
-            if (result == null)
+            if (!result)
             {
                 return StatusCode(500);
             }
@@ -62,6 +66,14 @@ namespace EmployeeTimeTracking.Controllers
             {
                 return null;
             }
+            return result;
+        }
+
+        [HttpPost("[action]")]
+        public EmployeeViewModel GetEmployeeInfo([FromForm]Guid id)
+        {
+            var result = _accountLogic.GetEmployeeInfo(id);
+
             return result;
         }
 

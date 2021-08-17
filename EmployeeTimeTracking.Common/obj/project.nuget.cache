@@ -1,8 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "lwlU9hP3Zn8c3Eq29p2zUUUSOcskwcdAIF29UCLxRfzk5A8sHiIHWDqB5RkwiwS+A5MhjvRGUY+9bFXs9NK3yA==",
+  "dgSpecHash": "1G9OTgT+dmH9utpStQ4BGIQbpqp5pXZOvarFBVtXWPsBTIRSmriMrT8+ATLZpYRfRLSz97e8GkeLODEIi0pn9w==",
   "success": true,
   "projectFilePath": "C:\\Users\\asemenov\\source\\repos\\EmployeeTimeTracking\\EmployeeTimeTracking.Common\\EmployeeTimeTracking.Common.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\asemenov\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\asemenov\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.9\\microsoft.aspnetcore.http.features.5.0.9.nupkg.sha512",
+    "C:\\Users\\asemenov\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\asemenov\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
+    "C:\\Users\\asemenov\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\asemenov\\.nuget\\packages\\system.io.pipelines\\5.0.1\\system.io.pipelines.5.0.1.nupkg.sha512",
+    "C:\\Users\\asemenov\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512"
+  ],
   "logs": []
 }

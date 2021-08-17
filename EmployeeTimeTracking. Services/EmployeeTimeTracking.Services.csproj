@@ -6,6 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EPPlus" Version="5.7.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\EmployeeTimeTracking.Common\EmployeeTimeTracking.Common.csproj" />
     <ProjectReference Include="..\EmployeeTimeTracking.Data\EmployeeTimeTracking.Data.csproj" />
   </ItemGroup>

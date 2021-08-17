@@ -45,7 +45,6 @@ C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\obj\Deb
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\obj\Debug\net5.0\ref\EmployeeTimeTracking.dll
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\obj\Debug\net5.0\EmployeeTimeTracking.pdb
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\obj\Debug\net5.0\EmployeeTimeTracking.genruntimeconfig.cache
-C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\obj\Debug\net5.0\EmployeeTimeTracking.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\bin\Debug\net5.0\Autofac.dll
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\bin\Debug\net5.0\Microsoft.OpenApi.dll
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
@@ -57,3 +56,13 @@ C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\bin\Deb
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\bin\Debug\net5.0\EmployeeTimeTracking.Services.pdb
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\bin\Debug\net5.0\Autofac.Extensions.DependencyInjection.dll
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\obj\Debug\net5.0\EmployeeTimeTracking.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\bin\Debug\net5.0\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\bin\Debug\net5.0\System.IO.Pipelines.dll
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\bin\Debug\net5.0\EPPlus.dll
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\bin\Debug\net5.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\bin\Debug\net5.0\System.Xml.XPath.XmlDocument.dll

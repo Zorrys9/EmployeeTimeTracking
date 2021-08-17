@@ -44,5 +44,10 @@ namespace EmployeeTimeTracking._Services.Services.Implementations
         {
             return _employeeRepository.GetAll();
         }
+
+        public EmployeeModel GetEmployee(Guid id)
+        {
+            return _employeeRepository.GetEmployee(id);
+        }
     }
 }

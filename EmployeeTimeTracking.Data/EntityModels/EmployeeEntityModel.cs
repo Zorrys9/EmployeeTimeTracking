@@ -28,6 +28,8 @@ namespace EmployeeTimeTracking.Data.EntityModels
         [MaxLength(30)]
         [Required]
         public string Position { get; set; }
+        [Required]
+        public string Avatar { get; set; }
 
         public IEnumerable<EmployeeReportEntityModel> EmployeeReports { get; set; }
     }

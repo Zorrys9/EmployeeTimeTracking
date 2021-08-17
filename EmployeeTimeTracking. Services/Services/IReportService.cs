@@ -1,4 +1,5 @@
 ﻿using EmployeeTimeTracking.Common.Models;
+using EmployeeTimeTracking.Common.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace EmployeeTimeTracking.Services.Services
         Task<Guid?> DeleteAsync(Guid Id);
         IEnumerable<ReportModel> GetAll();
         ReportModel GetReportById(Guid id);
-
+        SummaryReportViewModel SummaryReportById(Guid id);
+        IEnumerable<SummaryReportViewModel> SummaryReports();
     }
 }

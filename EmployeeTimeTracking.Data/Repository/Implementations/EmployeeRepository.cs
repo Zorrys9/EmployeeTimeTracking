@@ -21,14 +21,14 @@ namespace EmployeeTimeTracking.Data.Repository.Implementations
 
         public async Task<Guid> InsertAsync(EmployeeModel model)
         {
-            var sqlQuery = $"INSERT INTO \"Employee\" (\"Id\", \"FirstName\", \"SecondName\", \"LastName\", \"DateOfBirth\", \"Position\") VALUES ('{Guid.NewGuid()}', '{model.FirstName}', '{model.SecondName}','{model.LastName}', '{model.DateOfBirth.ToShortDateString()}', '{model.Position}') returning \"Id\"";
+            var sqlQuery = $"INSERT INTO \"Employee\" (\"Id\", \"FirstName\", \"SecondName\", \"LastName\", \"DateOfBirth\", \"Position\", \"Avatar\") VALUES ('{model.Id}', '{model.FirstName}', '{model.SecondName}','{model.LastName}', '{model.DateOfBirth.ToShortDateString()}', '{model.Position}', '{model.Avatar}') returning \"Id\"";
             var result = await ExecuteAsync(sqlQuery);
             return result;
         }
 
         public async Task<Guid> UpdateAsync(EmployeeModel model)
         {
-            var sqlQuery = $"UPDATE \"Employee\" SET \"FirstName\"='{model.FirstName}', \"SecondName\"='{model.SecondName}', \"LastName\"='{model.LastName}', \"DateOfBirth\"='{model.DateOfBirth.ToShortDateString()}', \"Position\"='{model.Position}' WHERE \"Id\" = '{model.Id}' returning \"Id\"";
+            var sqlQuery = $"UPDATE \"Employee\" SET \"FirstName\"='{model.FirstName}', \"SecondName\"='{model.SecondName}', \"LastName\"='{model.LastName}', \"DateOfBirth\"='{model.DateOfBirth.ToShortDateString()}', \"Position\"='{model.Position}', \"Avatar\"='{model.Avatar}' WHERE \"Id\" = '{model.Id}' returning \"Id\"";
             var result = await ExecuteAsync(sqlQuery);
             return result;
         }
@@ -46,6 +46,14 @@ namespace EmployeeTimeTracking.Data.Repository.Implementations
             var result = GetList(sqlQuery);
 
             return _mapper.Map<IEnumerable<EmployeeModel>>(result);
+        }
+
+        public EmployeeModel GetEmployee(Guid employeeId)
+        {
+            var sqlQuery = $"SELECT * FROM \"Employee\" WHERE \"Id\" = '{employeeId}'";
+            var result = GetEnemy(sqlQuery);
+
+            return _mapper.Map<EmployeeModel>(result);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace EmployeeTimeTracking.MapperProfiles
     {
         public EmployeeReportProfile()
         {
-            CreateMap<EmployeeReportModel, EmployeeEntityModel>().ReverseMap();
+            CreateMap<EmployeeReportModel, EmployeeReportEntityModel>().ReverseMap();
             CreateMap<EmployeeReportModel, ReportViewModel>().ReverseMap();
         }
     }

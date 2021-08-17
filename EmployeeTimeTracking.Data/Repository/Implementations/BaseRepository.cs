@@ -46,6 +46,16 @@ namespace EmployeeTimeTracking.Data.Repository.Implementations
                 return result;
             }
         }
+        
+        protected object GetColumn(string sql)
+        {
+            using(var conn = CreateConnection())
+            {
+                var result = conn.ExecuteScalar(sql);
+
+                return result;
+            }
+        }
 
         protected async Task<Guid> ExecuteAsync(string sql)
         {

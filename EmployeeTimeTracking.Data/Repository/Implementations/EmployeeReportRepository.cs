@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeTimeTracking.Data.Repository.Implementations
 {
-    public class EmployeeReportRepository : BaseRepository<EmployeeEntityModel>, IEmployeeReportRepository
+    public class EmployeeReportRepository : BaseRepository<EmployeeReportEntityModel>, IEmployeeReportRepository
     {
         private readonly IMapper _mapper;
         public EmployeeReportRepository(string connectionString, IMapper mapper)
@@ -31,11 +31,11 @@ namespace EmployeeTimeTracking.Data.Repository.Implementations
             return _mapper.Map<IEnumerable<EmployeeReportModel>>(result);
         }
 
-        public IEnumerable<EmployeeReportModel> GetByReport(Guid reportId)
+        public Guid GetByReport(Guid reportId)
         {
-            var sqlQuery = $"SELECT * FROM \"EmployeeReports\" WHERE \"ReportId\" = '{reportId}'";
-            var result = GetList(sqlQuery);
-            return _mapper.Map<IEnumerable<EmployeeReportModel>>(result);
+            var sqlQuery = $"SELECT \"EmployeeId\" FROM \"EmployeeReports\" WHERE \"ReportId\" = '{reportId}'";
+            var result = (Guid)GetColumn(sqlQuery);
+            return result;
         }
 
         public async Task<Guid> InsertAsync(EmployeeReportModel model)

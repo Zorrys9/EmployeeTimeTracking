@@ -16,7 +16,12 @@ namespace EmployeeTimeTracking.MapperProfiles
             CreateMap<ReportModel, ReportEntityModel>().ReverseMap();
 
             CreateMap<ReportModel, ReportViewModel>()
-                .ForMember(model => model.ReportId, model => model.MapFrom(view => view.Id)).ReverseMap();
+                .ForMember(view => view.ReportId, view => view.MapFrom(model => model.Id)).ReverseMap();
+
+            CreateMap<ReportModel, EmployeeReportViewModel>()
+                .ForMember(view => view.Recycling, view => view.MapFrom(model => model.Recycling > 0))
+                .ForMember(view => view.Date, view => view.MapFrom(model => model.Date.ToShortDateString()))
+                .ReverseMap();
         }
     }   
 }

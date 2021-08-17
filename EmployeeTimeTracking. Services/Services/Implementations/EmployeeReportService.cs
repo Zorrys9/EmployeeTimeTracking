@@ -27,13 +27,17 @@ namespace EmployeeTimeTracking.Services.Services.Implementations
             return _employeeReportRepository.GetByEmployee(employeeId);
         }
 
-        public IEnumerable<EmployeeReportModel> GetByReport(Guid reportId)
+        public Guid GetByReport(Guid reportId)
         {
             return _employeeReportRepository.GetByReport(reportId);
         }
 
-        public async Task<Guid> InsertAsync(EmployeeReportModel model)
+        public async Task<Guid?> InsertAsync(EmployeeReportModel model)
         {
+            if(model == null)
+            {
+                return null;
+            }
             return await _employeeReportRepository.InsertAsync(model);
         }
     }

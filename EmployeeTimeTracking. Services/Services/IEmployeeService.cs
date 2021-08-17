@@ -13,5 +13,6 @@ namespace EmployeeTimeTracking._Services.Services
         Task<Guid?> UpdateAsync(EmployeeModel model);
         Task<Guid?> DeleteAsync(Guid id);
         IEnumerable<EmployeeModel> GetAll();
+        EmployeeModel GetEmployee(Guid id);
     }
 }
