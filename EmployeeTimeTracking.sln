@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeTimeTracking", "EmployeeTimeTracking\EmployeeTimeTracking.csproj", "{A0457E4B-225C-41D1-B32B-5B61F17E728E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeTimeTracking", "EmployeeTimeTracking\EmployeeTimeTracking.csproj", "{A0457E4B-225C-41D1-B32B-5B61F17E728E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeTimeTracking.Common", "EmployeeTimeTracking.Common\EmployeeTimeTracking.Common.csproj", "{94940212-DC27-4E69-97B2-A024817D34C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeTimeTracking.Common", "EmployeeTimeTracking.Common\EmployeeTimeTracking.Common.csproj", "{94940212-DC27-4E69-97B2-A024817D34C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeTimeTracking.Services", "EmployeeTimeTracking. Services\EmployeeTimeTracking.Services.csproj", "{CC01F36D-2881-4C4B-B0B4-9D8225DCCA2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeTimeTracking.Services", "EmployeeTimeTracking. Services\EmployeeTimeTracking.Services.csproj", "{CC01F36D-2881-4C4B-B0B4-9D8225DCCA2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeTimeTracking.Logic", "EmployeeTimeTracking. Logic\EmployeeTimeTracking.Logic.csproj", "{BF2D8956-5456-4D67-846D-2EEF78A913FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeTimeTracking.Logic", "EmployeeTimeTracking. Logic\EmployeeTimeTracking.Logic.csproj", "{BF2D8956-5456-4D67-846D-2EEF78A913FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeTimeTracking.Data", "EmployeeTimeTracking.Data\EmployeeTimeTracking.Data.csproj", "{93167591-330A-4B0B-9E6C-02DCB48C2E02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeTimeTracking.Data", "EmployeeTimeTracking.Data\EmployeeTimeTracking.Data.csproj", "{93167591-330A-4B0B-9E6C-02DCB48C2E02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

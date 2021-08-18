@@ -31,7 +31,7 @@ namespace EmployeeTimeTracking.Data.Repository.Implementations
             return _mapper.Map<IEnumerable<ReportModel>>(result);
         }
 
-        public ReportModel GetReportById(Guid id)
+        public ReportModel GetById(Guid id)
         {
             var sqlQuery = $"SELECT * FROM \"Report\" WHERE \"Id\" = '{id}'";
             var result = GetEnemy(sqlQuery);
@@ -51,5 +51,6 @@ namespace EmployeeTimeTracking.Data.Repository.Implementations
             var result = await ExecuteAsync(sqlQuery);
             return result;
         }
+
     }
 }

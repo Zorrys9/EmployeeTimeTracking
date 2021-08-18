@@ -16,15 +16,13 @@ using System.Xml.Serialization;
 
 namespace EmployeeTimeTracking.Services.Services.Implementations
 {
+    /// <summary>
+    /// Сервис по работе с файлами
+    /// </summary>
     public class FileService : IFileService
     {
-
         public async Task<string> SaveImageAsync(IFormFile file, Guid employeeId)
         {
-            if(file == null)
-            {
-                return null;
-            }
             var fileName = employeeId + file.ContentType.Replace("image/", ".");
             var fileStorage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\AccountImages");
             var filePath = Path.Combine(fileStorage, fileName);
@@ -42,23 +40,17 @@ namespace EmployeeTimeTracking.Services.Services.Implementations
             {
                 await file.CopyToAsync(fileStream);
             }
-
             return filePath;
         }
 
         public void DeleteImageAsync(Guid employeeId)
         {
             var image = FindFile(employeeId);
-
             File.Delete(image);
         }
 
         public FileContentResult DownloadJson<T>(T item)
         {
-            if (item == null)
-            {
-                return null;
-            }
             var json = JsonConvert.SerializeObject(item);
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\response.json");
             File.WriteAllText(filePath, json);
@@ -74,10 +66,6 @@ namespace EmployeeTimeTracking.Services.Services.Implementations
 
         public FileContentResult DownloadXml<T>(T item)
         {
-            if(item == null)
-            {
-                return null;
-            }
             XmlSerializer xmlSerializer = new XmlSerializer(item.GetType());
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\response.xml");
             
@@ -105,7 +93,7 @@ namespace EmployeeTimeTracking.Services.Services.Implementations
             return result;
         }
 
-        public IEnumerable<ReportViewModel> GetReportsInXls(IFormFile file)
+        public IEnumerable<ReportViewModel> GetReportsFromXls(IFormFile file)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             ExcelPackage package = new ExcelPackage(file.OpenReadStream());
@@ -130,6 +118,11 @@ namespace EmployeeTimeTracking.Services.Services.Implementations
             return result;
         }
 
+        /// <summary>
+        /// Ищет изображение сотрудника по его идентификатору
+        /// </summary>
+        /// <param name="employeeId">Идентификатор сотрудника</param>
+        /// <returns>Ссылка на изображение сотрудника</returns>
         private string FindFile(Guid employeeId)
         {
             var fileName = employeeId.ToString();

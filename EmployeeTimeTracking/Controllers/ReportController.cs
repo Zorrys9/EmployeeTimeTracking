@@ -30,8 +30,12 @@ namespace EmployeeTimeTracking.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> Insert([Required] ReportViewModel model)
+        public async Task<IActionResult> Insert([FromForm] ReportViewModel model)
         {
+            if(model == null)
+            {
+                return StatusCode(500);
+            }
             var result = await _trackingLogic.ReportInsertAsync(model);
 
             if (!result)
@@ -40,9 +44,14 @@ namespace EmployeeTimeTracking.Controllers
             }
             return Ok();
         }
+
         [HttpPut("[action]")]
-        public async Task<IActionResult> Update([Required] ReportModel model)
+        public async Task<IActionResult> Update([FromForm] ReportModel model)
         {
+            if (model == null)
+            {
+                return StatusCode(500);
+            }
             var result = await _reportService.UpdateAsync(model);
 
             if (result == null)
@@ -51,6 +60,7 @@ namespace EmployeeTimeTracking.Controllers
             }
             return Ok();
         }
+
         [HttpDelete("[action]")]
         public async Task<IActionResult> Delete([Required] Guid id)
         {
@@ -62,98 +72,64 @@ namespace EmployeeTimeTracking.Controllers
             }
             return Ok();
         }
+
         [HttpGet("[action]")]
-        public IEnumerable<EmployeeReportViewModel> GetAll()
+        public PaginationViewModel<EmployeeReportViewModel> GetAll(int pageNumber = 1, int pageSize = 4)
         {
             var result = _trackingLogic.GetAllReports();
-
-            if(result.Count() == 0)
+            if (!result.Any())
             {
                 return null;
             }
-            return result;
+
+            PageInfoViewModel pageInfo = new PageInfoViewModel(pageNumber, result.Count(), pageSize);
+            PaginationViewModel<EmployeeReportViewModel> pagination = new PaginationViewModel<EmployeeReportViewModel>();
+
+            pagination.List = pagination.Pagination(result, pageNumber, pageSize);
+            pagination.PageInfo = pageInfo;
+
+            return pagination;
         }
+
+        [HttpPost("[action]")]
+        public PaginationViewModel<EmployeeReportViewModel> SearchReports([FromForm]SearchReportsViewModel model, int pageNumber = 1, int pageSize = 4)
+        {
+            if (model == null)
+            {
+                return GetAll(pageNumber, pageSize);
+            }
+            var result = _trackingLogic.SearchReports(model);
+            if (!result.Any())
+            {
+                return null;
+            }
+
+            PageInfoViewModel pageInfo = new PageInfoViewModel(pageNumber, result.Count(), pageSize);
+            PaginationViewModel<EmployeeReportViewModel> pagination = new PaginationViewModel<EmployeeReportViewModel>();
+
+            pagination.List = pagination.Pagination(result, pageNumber, pageSize);
+            pagination.PageInfo = pageInfo;
+
+            return pagination;
+        }
+
         [HttpGet("[action]")]
-        public IEnumerable<EmployeeReportViewModel> GetReportById([Required] Guid id)
+        public PaginationViewModel<EmployeeReportViewModel> GetReportById([Required] Guid id, int pageNumber = 1, int pageSize = 4)
         {
             var result = _trackingLogic.GetReportsForEmployee(id);
-            if(result.Count() == 0)
+
+            if (!result.Any())
             {
                 return null;
             }
-            return result;
-        }
-        [HttpGet("[action]")]
-        public IActionResult DetailReportForAllInJson()
-        {
-            var result = _trackingLogic.DetailReportForAllInJson();
 
-            return result;
-        }
-        [HttpGet("[action]")]
-        public IActionResult DetailReportForAllInXml()
-        {
-            var result =_trackingLogic.DetailReportForAllInXml();
+            PageInfoViewModel pageInfo = new PageInfoViewModel(pageNumber, result.Count(), pageSize);
+            PaginationViewModel<EmployeeReportViewModel> pagination = new PaginationViewModel<EmployeeReportViewModel>();
 
-            return result;
-        }
-        [HttpGet("[action]")]
-        public IActionResult DetailReportForEmployeeInJson([Required] Guid id)
-        {
-            var result = _trackingLogic.DetailReportForEmployeeInJson(id);
-
-            return result;
-        }
-        [HttpGet("[action]")]
-        public IActionResult DetailReportForEmployeeInXml([Required] Guid id)
-        {
-            var result = _trackingLogic.DetailReportForEmployeeInXml(id);
-
-            return result;
-        }
-        [HttpGet("[action]")]
-        public IActionResult SummaryReportForEmployeeInJson([Required] Guid id)
-        {
-            var result = _trackingLogic.SummaryReportForEmployeeInJson(id);
-
-            return result;
-        }
-        [HttpGet("[action]")]
-        public IActionResult SummaryReportForEmployeeInXml([Required] Guid id)
-        {
-            var result = _trackingLogic.SummaryReportForEmployeeInXml(id);
-
-            return result;
-        }
-        [HttpGet("[action]")]
-        public IActionResult SummaryReportForAllJson()
-        {
-            var result = _trackingLogic.SummaryReportsInJson();
-
-            return result;
-        }
-        [HttpGet("[action]")]
-        public IActionResult SummaryReportForAllInXml()
-        {
-            var result = _trackingLogic.SummaryReportsInXml();
-
-            return result;
-        }
-        [HttpGet("[action]")]
-        public IActionResult DownloadTemplate([Required]Guid employeeId)
-        {
-            HttpContext.Response.ContentType = "application/vnd.ms-excel";
-            return _fileService.DownloadTemplateReport(employeeId);
-        }
-        [HttpPost("[action]")]
-        public async Task<IActionResult> SetReportsFromXls([FromForm]IFormFile file)
-        {
-            var result = await _trackingLogic.SetReportsFromXls(file);
-            if (!result)
-            {
-                return StatusCode(500);
-            }
-            return Ok();
+            pagination.List = pagination.Pagination(result, pageNumber, pageSize);
+            pagination.PageInfo = pageInfo;
+            
+            return pagination;
         }
     }
 }

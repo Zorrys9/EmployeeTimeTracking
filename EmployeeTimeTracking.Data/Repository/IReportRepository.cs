@@ -13,6 +13,6 @@ namespace EmployeeTimeTracking.Data.Repository
         Task<Guid> UpdateAsync(ReportModel model);
         Task<Guid> DeleteAsync(Guid id);
         IEnumerable<ReportModel> GetAll();
-        ReportModel GetReportById(Guid id);
+        ReportModel GetById(Guid id);
     }
 }

@@ -43,6 +43,9 @@ namespace EmployeeTimeTracking.Common.ViewModels
         [JsonProperty("Количество написанных отчетов")]
         [XmlElement("Количество написанных отчетов")]
         public int NumberOfReports { get; set; }
+        /// <summary>
+        /// Идентификатор сотрудника
+        /// </summary>
         [JsonIgnore]
         [XmlIgnore]
         public Guid EmployeeId { get; set; }

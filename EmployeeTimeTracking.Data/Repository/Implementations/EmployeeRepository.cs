@@ -48,7 +48,7 @@ namespace EmployeeTimeTracking.Data.Repository.Implementations
             return _mapper.Map<IEnumerable<EmployeeModel>>(result);
         }
 
-        public EmployeeModel GetEmployee(Guid employeeId)
+        public EmployeeModel Get(Guid employeeId)
         {
             var sqlQuery = $"SELECT * FROM \"Employee\" WHERE \"Id\" = '{employeeId}'";
             var result = GetEnemy(sqlQuery);

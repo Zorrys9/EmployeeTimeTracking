@@ -63,12 +63,23 @@ namespace EmployeeTimeTracking._Logic.Logics.Implementations
             {
                 var employeeId = _employeeReportService.GetByReport(report.Id);
                 EmployeeReportViewModel viewModel = _mapper.Map<EmployeeReportViewModel>(report);
-                var employee = _employeeService.GetEmployee(employeeId);
+                var employee = _employeeService.Get(employeeId);
                 viewModel.FullNameEmployee =  _mapper.Map<EmployeeReportViewModel>(employee).FullNameEmployee;
                 viewModel.PositionEmployee = employee.Position;
 
                 result.Add(viewModel);
             }
+            return result;
+        }
+
+        public IEnumerable<EmployeeReportViewModel> SearchReports(SearchReportsViewModel model)
+        {
+            if(model == null)
+            {
+                return null;
+            }
+            var result = _reportService.SearchReports(model);
+
             return result;
         }
 
@@ -79,8 +90,8 @@ namespace EmployeeTimeTracking._Logic.Logics.Implementations
             
             foreach(var item in employeeReportsList)
             {
-                var employee = _employeeService.GetEmployee(item.EmployeeId);
-                var report = _reportService.GetReportById(item.ReportId);
+                var employee = _employeeService.Get(item.EmployeeId);
+                var report = _reportService.GetById(item.ReportId);
                 EmployeeReportViewModel viewModel = _mapper.Map<EmployeeReportViewModel>(report);
                 viewModel.FullNameEmployee = _mapper.Map<EmployeeReportViewModel>(employee).FullNameEmployee;
                 viewModel.PositionEmployee = employee.Position;
@@ -115,7 +126,7 @@ namespace EmployeeTimeTracking._Logic.Logics.Implementations
         public FileContentResult SummaryReportForEmployeeInJson(Guid employeeId)
         {
             var report = _reportService.SummaryReportById(employeeId);
-            var employee = _employeeService.GetEmployee(employeeId);
+            var employee = _employeeService.Get(employeeId);
             report.FullName = $"{employee.FirstName} {employee.SecondName} {employee.LastName}";
             report.Position = employee.Position;
             return _fileService.DownloadJson(report);
@@ -124,7 +135,7 @@ namespace EmployeeTimeTracking._Logic.Logics.Implementations
         public FileContentResult SummaryReportForEmployeeInXml(Guid employeeId)
         {
             var report = _reportService.SummaryReportById(employeeId);
-            var employee = _employeeService.GetEmployee(employeeId);
+            var employee = _employeeService.Get(employeeId);
             report.FullName = $"{employee.FirstName} {employee.SecondName} {employee.LastName}";
             report.Position = employee.Position;
             return _fileService.DownloadXml(report);
@@ -134,7 +145,7 @@ namespace EmployeeTimeTracking._Logic.Logics.Implementations
             var reports = _reportService.SummaryReports();
             foreach (var report in reports)
             {
-                var employee = _employeeService.GetEmployee(report.EmployeeId);
+                var employee = _employeeService.Get(report.EmployeeId);
                 report.FullName = $"{employee.FirstName} {employee.SecondName} {employee.LastName}";
                 report.Position = employee.Position;
             }
@@ -146,7 +157,7 @@ namespace EmployeeTimeTracking._Logic.Logics.Implementations
             var reports = _reportService.SummaryReports();
             foreach (var report in reports)
             {
-                var employee = _employeeService.GetEmployee(report.EmployeeId);
+                var employee = _employeeService.Get(report.EmployeeId);
                 report.FullName = $"{employee.FirstName} {employee.SecondName} {employee.LastName}";
                 report.Position = employee.Position;
             }
@@ -155,7 +166,7 @@ namespace EmployeeTimeTracking._Logic.Logics.Implementations
 
         public async Task<bool> SetReportsFromXls(IFormFile file)
         {
-            var reports = _fileService.GetReportsInXls(file);
+            var reports = _fileService.GetReportsFromXls(file);
 
             if(reports == null || file == null)
             {

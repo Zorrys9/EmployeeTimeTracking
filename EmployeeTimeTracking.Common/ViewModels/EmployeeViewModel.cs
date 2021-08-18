@@ -43,7 +43,9 @@ namespace EmployeeTimeTracking.Common.ViewModels
         /// </summary>
         [IgnoreMapAttribute]
         public IFormFile Avatar { get; set; }
-
+        /// <summary>
+        /// Ссылка на изображение в системе
+        /// </summary>
         public string AvatarUrl { get; set; }
     }
 }

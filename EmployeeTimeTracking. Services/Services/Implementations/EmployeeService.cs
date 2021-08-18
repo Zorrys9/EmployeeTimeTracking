@@ -1,5 +1,6 @@
 ﻿using EmployeeTimeTracking.Common.Models;
 using EmployeeTimeTracking.Data.Repository;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,30 +9,28 @@ using System.Threading.Tasks;
 
 namespace EmployeeTimeTracking._Services.Services.Implementations
 {
+    /// <summary>
+    /// Сервис по работе с сотрудниками
+    /// </summary>
     public class EmployeeService : IEmployeeService
     {
         private readonly IEmployeeRepository _employeeRepository;
+        private readonly ILogger _logger;
 
-        public EmployeeService(IEmployeeRepository employeeRepository)
+        public EmployeeService(IEmployeeRepository employeeRepository, ILogger logger)
         {
             _employeeRepository = employeeRepository;
+            _logger = logger;
         }
 
         public async Task<Guid?> InsertAsync(EmployeeModel model)
         {
-            if(model == null)
-            {
-                return null;
-            }
+            _logger.Information("A new employee has been added");
             return await _employeeRepository.InsertAsync(model);
         }
 
         public async Task<Guid?> UpdateAsync(EmployeeModel model)
         {
-            if (model == null)
-            {
-                return null;
-            }
             return await _employeeRepository.UpdateAsync(model);
         }
 
@@ -45,9 +44,9 @@ namespace EmployeeTimeTracking._Services.Services.Implementations
             return _employeeRepository.GetAll();
         }
 
-        public EmployeeModel GetEmployee(Guid id)
+        public EmployeeModel Get(Guid id)
         {
-            return _employeeRepository.GetEmployee(id);
+            return _employeeRepository.Get(id);
         }
     }
 }

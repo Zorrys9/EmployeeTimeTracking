@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace EmployeeTimeTracking.Services.Services.Implementations
 {
+    /// <summary>
+    /// Сервис по работе с сотрудниками и их отчетами
+    /// </summary>
     public class EmployeeReportService : IEmployeeReportService
     {
         private readonly IEmployeeReportRepository _employeeReportRepository;
@@ -34,10 +37,6 @@ namespace EmployeeTimeTracking.Services.Services.Implementations
 
         public async Task<Guid?> InsertAsync(EmployeeReportModel model)
         {
-            if(model == null)
-            {
-                return null;
-            }
             return await _employeeReportRepository.InsertAsync(model);
         }
     }

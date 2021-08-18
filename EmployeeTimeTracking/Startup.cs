@@ -1,4 +1,5 @@
 using Autofac;
+using Autofac.Core;
 using Autofac.Extensions.DependencyInjection;
 using EmployeeTimeTracking._Logic.Logics;
 using EmployeeTimeTracking._Logic.Logics.Implementations;
@@ -6,6 +7,7 @@ using EmployeeTimeTracking._Services.Services;
 using EmployeeTimeTracking._Services.Services.Implementations;
 using EmployeeTimeTracking.Data.Repository;
 using EmployeeTimeTracking.Data.Repository.Implementations;
+using EmployeeTimeTracking.Middlewares;
 using EmployeeTimeTracking.Modules;
 using EmployeeTimeTracking.Services.Services;
 using EmployeeTimeTracking.Services.Services.Implementations;
@@ -15,6 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using System;
 
 namespace EmployeeTimeTracking
@@ -28,7 +31,6 @@ namespace EmployeeTimeTracking
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -47,6 +49,16 @@ namespace EmployeeTimeTracking
 
             builder.Populate(services);
             builder.RegisterModule<AutoFacModule>();
+            ILogger logger = new LoggerConfiguration().ReadFrom.Configuration(Configuration).CreateLogger(); 
+
+
+            builder.ComponentRegistryBuilder.Registered += (sender, args) =>
+            {
+                args.ComponentRegistration.PipelineBuilding += (sendr, pipeline) =>
+                {
+                    pipeline.Use(new ExceptionMiddleware(logger));
+                };
+            };
 
             builder.RegisterType<EmployeeRepository>()
                 .As<IEmployeeRepository>()
@@ -65,6 +77,11 @@ namespace EmployeeTimeTracking
 
             builder.RegisterType<SummaryReportRepository>()
                 .As<ISummaryReportRepository>()
+                .InstancePerLifetimeScope()
+                .WithParameter("connectionString", connectionString);
+
+            builder.RegisterType<SearchReportsRepository>()
+                .As<ISearchReportsRepository>()
                 .InstancePerLifetimeScope()
                 .WithParameter("connectionString", connectionString);
 
@@ -92,11 +109,13 @@ namespace EmployeeTimeTracking
                 .As<IAccountLogic>()
                 .InstancePerLifetimeScope();
 
+            builder.RegisterType<ExceptionMiddleware>();
+
             var container = builder.Build();
+
             return new AutofacServiceProvider(container);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -106,10 +125,8 @@ namespace EmployeeTimeTracking
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            //app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();

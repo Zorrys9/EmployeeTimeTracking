@@ -23,5 +23,6 @@ namespace EmployeeTimeTracking._Logic.Logics
         FileContentResult SummaryReportForEmployeeInJson(Guid employeeId);
         FileContentResult SummaryReportForEmployeeInXml(Guid employeeId);
         Task<bool> SetReportsFromXls(IFormFile file);
+        IEnumerable<EmployeeReportViewModel> SearchReports(SearchReportsViewModel model);
     }
 }

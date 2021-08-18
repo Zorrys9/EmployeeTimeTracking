@@ -50,11 +50,6 @@ namespace EmployeeTimeTracking._Logic.Logics.Implementations
         {
             var types = new[] { "image/jpeg", "image/jpg", "image/png" };
 
-            if (model == null)
-            {
-                return false;
-            }
-
             EmployeeModel changedModel = _mapper.Map<EmployeeModel>(model);
             if(model.Avatar != null && types.Contains(model.Avatar.ContentType))
             {
@@ -85,7 +80,7 @@ namespace EmployeeTimeTracking._Logic.Logics.Implementations
 
         public EmployeeViewModel GetEmployeeInfo(Guid id)
         {
-            var employee = _employeeService.GetEmployee(id);
+            var employee = _employeeService.Get(id);
             EmployeeViewModel result = _mapper.Map<EmployeeViewModel>(employee);
 
             return result;

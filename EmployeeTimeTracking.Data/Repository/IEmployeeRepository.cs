@@ -17,6 +17,6 @@ namespace EmployeeTimeTracking.Data.Repository
 
         IEnumerable<EmployeeModel> GetAll();
 
-        EmployeeModel GetEmployee(Guid employeeId);
+        EmployeeModel Get(Guid employeeId);
     }
 }
