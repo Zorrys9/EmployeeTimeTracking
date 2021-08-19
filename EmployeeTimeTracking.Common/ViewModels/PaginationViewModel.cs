@@ -12,10 +12,14 @@ namespace EmployeeTimeTracking.Common.ViewModels
    /// <typeparam name="T">Тип объекта списка</typeparam>
     public class PaginationViewModel<T> where T : class
     {
+        public PaginationViewModel()
+        {
+            List = new List<T>();
+        }
         /// <summary>
         /// Список выводимых на страницу объектов
         /// </summary>
-        public IEnumerable<T> List { get; set; }
+        public ICollection<T> List { get; set; }
         /// <summary>
         /// Модель представления информации о странице
         /// </summary>

@@ -20,14 +20,18 @@ namespace EmployeeTimeTracking.Common.ViewModels
         /// </summary>
         public int CurrentPage { get; set; }
         /// <summary>
-        /// Количество выводимых объектов на странице
+        /// Общее количество объектов
         /// </summary>
         public int CountItems { get; set; }
+        /// <summary>
+        /// Количество выводимых объектов
+        /// </summary>
+        public int PageSize { get; set; }
         public PageInfoViewModel(int pageNumber, int countItems, int pageSize)
         {
             CurrentPage = pageNumber;
-            TotalPages = (int)Math.Ceiling(countItems / (double)pageSize);
             CountItems = countItems;
+            PageSize = pageSize;
         }
         /// <summary>
         /// Проверка есть ли предыдущая страница
@@ -43,6 +47,11 @@ namespace EmployeeTimeTracking.Common.ViewModels
         public bool NextPageExist
         {
             get { return CurrentPage < TotalPages; }
+        }
+
+        public void CalculateTotalPage()
+        {
+            TotalPages = (int)Math.Ceiling(CountItems / (double)PageSize);
         }
     }
 }

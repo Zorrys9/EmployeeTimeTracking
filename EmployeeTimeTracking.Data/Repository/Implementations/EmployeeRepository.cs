@@ -19,39 +19,39 @@ namespace EmployeeTimeTracking.Data.Repository.Implementations
         }
 
 
-        public async Task<Guid> InsertAsync(EmployeeModel model)
+        public async Task<EmployeeModel> InsertAsync(EmployeeModel model)
         {
-            var sqlQuery = $"INSERT INTO \"Employee\" (\"Id\", \"FirstName\", \"SecondName\", \"LastName\", \"DateOfBirth\", \"Position\", \"Avatar\") VALUES ('{model.Id}', '{model.FirstName}', '{model.SecondName}','{model.LastName}', '{model.DateOfBirth.ToShortDateString()}', '{model.Position}', '{model.Avatar}') returning \"Id\"";
-            var result = await ExecuteAsync(sqlQuery);
-            return result;
+            var sqlQuery = $"INSERT INTO \"Employee\" (\"Id\", \"FirstName\", \"SecondName\", \"LastName\", \"DateOfBirth\", \"Position\") VALUES ('{model.Id}', '{model.FirstName}', '{model.SecondName}','{model.LastName}', '{model.DateOfBirth.ToShortDateString()}', '{model.Position}') returning *";
+            var result = await GetEnemyAsync(sqlQuery);
+            return _mapper.Map<EmployeeModel>(result);
         }
 
-        public async Task<Guid> UpdateAsync(EmployeeModel model)
+        public async Task<EmployeeModel> UpdateAsync(EmployeeModel model)
         {
-            var sqlQuery = $"UPDATE \"Employee\" SET \"FirstName\"='{model.FirstName}', \"SecondName\"='{model.SecondName}', \"LastName\"='{model.LastName}', \"DateOfBirth\"='{model.DateOfBirth.ToShortDateString()}', \"Position\"='{model.Position}', \"Avatar\"='{model.Avatar}' WHERE \"Id\" = '{model.Id}' returning \"Id\"";
-            var result = await ExecuteAsync(sqlQuery);
-            return result;
+            var sqlQuery = $"UPDATE \"Employee\" SET \"FirstName\"='{model.FirstName}', \"SecondName\"='{model.SecondName}', \"LastName\"='{model.LastName}', \"DateOfBirth\"='{model.DateOfBirth.ToShortDateString()}', \"Position\"='{model.Position}' WHERE \"Id\" = '{model.Id}' returning *";
+            var result = await GetEnemyAsync(sqlQuery);
+            return _mapper.Map<EmployeeModel>(result);
         }
 
-        public async Task<Guid> DeleteAsync(Guid id)
+        public async Task<EmployeeModel> DeleteAsync(Guid id)
         {
-            var sqlQuery = $"DELETE FROM \"Employee\" WHERE \"Id\" = '{id}'  returning \"Id\"";
-            var result = await ExecuteAsync(sqlQuery);
-            return result;
+            var sqlQuery = $"DELETE FROM \"Employee\" WHERE \"Id\" = '{id}'  returning *";
+            var result = await GetEnemyAsync(sqlQuery);
+            return _mapper.Map<EmployeeModel>(result);
         }
 
-        public IEnumerable<EmployeeModel> GetAll()
+        public async Task<IEnumerable<EmployeeModel>> GetAll()
         {
             var sqlQuery = "SELECT * FROM \"Employee\" ORDER BY \"FirstName\"";
-            var result = GetList(sqlQuery);
+            var result = await GetListAsync(sqlQuery);
 
             return _mapper.Map<IEnumerable<EmployeeModel>>(result);
         }
 
-        public EmployeeModel Get(Guid employeeId)
+        public async Task<EmployeeModel> GetById(Guid employeeId)
         {
             var sqlQuery = $"SELECT * FROM \"Employee\" WHERE \"Id\" = '{employeeId}'";
-            var result = GetEnemy(sqlQuery);
+            var result = await GetEnemyAsync(sqlQuery);
 
             return _mapper.Map<EmployeeModel>(result);
         }

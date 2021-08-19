@@ -21,7 +21,7 @@ namespace EmployeeTimeTracking.Services.Services.Implementations
     /// </summary>
     public class FileService : IFileService
     {
-        public async Task<string> SaveImageAsync(IFormFile file, Guid employeeId)
+        public async Task SaveImageAsync(IFormFile file, Guid employeeId)
         {
             var fileName = employeeId + file.ContentType.Replace("image/", ".");
             var fileStorage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\AccountImages");
@@ -40,7 +40,6 @@ namespace EmployeeTimeTracking.Services.Services.Implementations
             {
                 await file.CopyToAsync(fileStream);
             }
-            return filePath;
         }
 
         public void DeleteImageAsync(Guid employeeId)
@@ -105,12 +104,11 @@ namespace EmployeeTimeTracking.Services.Services.Implementations
             while (sheets.Cells[i, 2].Value != null)
             {
                 ReportViewModel viewModel = new ReportViewModel();
-                viewModel.Name = sheets.Cells[i, 2].Value.ToString();
-                viewModel.Date = (DateTime)sheets.Cells[i, 3].Value;
-                viewModel.NumberOfHour = Convert.ToInt32(sheets.Cells[i, 4].Value);
-                viewModel.Recycling = Convert.ToInt32(sheets.Cells[i, 5].Value);
-                viewModel.ReasonForRecycling = sheets.Cells[i, 6].Value?.ToString();
-                viewModel.DescriptionWork = sheets.Cells[i, 7].Value.ToString();
+                viewModel.Date = (DateTime)sheets.Cells[i, 2].Value;
+                viewModel.NumberOfHour = Convert.ToInt32(sheets.Cells[i, 3].Value);
+                viewModel.Recycling = Convert.ToInt32(sheets.Cells[i, 4].Value);
+                viewModel.ReasonForRecycling = sheets.Cells[i, 5].Value?.ToString();
+                viewModel.DescriptionWork = sheets.Cells[i, 6].Value.ToString();
                 viewModel.EmployeeId = Guid.Parse(employeeId);
                 result.Add(viewModel);
                 i++;

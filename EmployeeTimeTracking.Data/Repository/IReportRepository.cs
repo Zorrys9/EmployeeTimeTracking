@@ -1,4 +1,5 @@
 ﻿using EmployeeTimeTracking.Common.Models;
+using EmployeeTimeTracking.Common.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,12 @@ namespace EmployeeTimeTracking.Data.Repository
 {
     public interface IReportRepository
     {
-        Task<Guid> InsertAsync(ReportModel model);
-        Task<Guid> UpdateAsync(ReportModel model);
-        Task<Guid> DeleteAsync(Guid id);
-        IEnumerable<ReportModel> GetAll();
-        ReportModel GetById(Guid id);
+        Task<ReportModel> InsertAsync(ReportModel model);
+        Task<ReportModel> UpdateAsync(ReportModel model);
+        Task<ReportModel> DeleteAsync(Guid id);
+        Task<IEnumerable<ReportModel>> GetAllForPage(PageInfoViewModel pageInfo);
+        Task<IEnumerable<ReportModel>> GetAll();
+        Task<int> Count();
+        Task<ReportModel> GetById(Guid id);
     }
 }

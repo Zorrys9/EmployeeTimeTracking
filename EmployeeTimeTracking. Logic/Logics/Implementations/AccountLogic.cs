@@ -36,7 +36,7 @@ namespace EmployeeTimeTracking._Logic.Logics.Implementations
             model.Id = Guid.NewGuid();
             
             EmployeeModel createdModel = _mapper.Map<EmployeeModel>(model);
-            createdModel.Avatar = await _fileService.SaveImageAsync(model.Avatar, model.Id);
+            await _fileService.SaveImageAsync(model.Avatar, model.Id);
 
             var result = await _employeeService.InsertAsync(createdModel);
             if(result == null)
@@ -53,7 +53,7 @@ namespace EmployeeTimeTracking._Logic.Logics.Implementations
             EmployeeModel changedModel = _mapper.Map<EmployeeModel>(model);
             if(model.Avatar != null && types.Contains(model.Avatar.ContentType))
             {
-                changedModel.Avatar = await _fileService.SaveImageAsync(model.Avatar, model.Id);
+                await _fileService.SaveImageAsync(model.Avatar, model.Id);
             }
 
             var result = await _employeeService.UpdateAsync(changedModel);
@@ -81,7 +81,7 @@ namespace EmployeeTimeTracking._Logic.Logics.Implementations
         public EmployeeViewModel GetEmployeeInfo(Guid id)
         {
             var employee = _employeeService.Get(id);
-            EmployeeViewModel result = _mapper.Map<EmployeeViewModel>(employee);
+            EmployeeViewModel result = _mapper.Map<EmployeeViewModel>(employee.Result);
 
             return result;
         }

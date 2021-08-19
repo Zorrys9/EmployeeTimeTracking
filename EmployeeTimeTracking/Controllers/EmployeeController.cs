@@ -4,6 +4,7 @@ using EmployeeTimeTracking.Common.Models;
 using EmployeeTimeTracking.Common.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 namespace EmployeeTimeTracking.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("Employees")]
     public class EmployeeController : Controller
     {
         private readonly IEmployeeService _employeeService;
@@ -23,7 +24,7 @@ namespace EmployeeTimeTracking.Controllers
             _accountLogic = accountLogic;
         }
 
-        [HttpPost("[action]")]
+        [HttpPost("")]
         public async Task<IActionResult> Insert([FromForm]EmployeeViewModel model)
         {
             if(model == null)
@@ -40,7 +41,7 @@ namespace EmployeeTimeTracking.Controllers
             return StatusCode(201);
         }
 
-        [HttpPut("[action]")]
+        [HttpPut("")]
         public async Task<IActionResult> Update([FromForm] EmployeeViewModel model)
         {
             if(model == null)
@@ -57,7 +58,7 @@ namespace EmployeeTimeTracking.Controllers
             return Ok();
         }
 
-        [HttpDelete("[action]")]
+        [HttpDelete("")]
         public async Task<IActionResult> Delete([FromForm]Guid id)
         {
             var result = await _accountLogic.DeleteEmployee(id);
@@ -70,30 +71,11 @@ namespace EmployeeTimeTracking.Controllers
             return Ok();
         }
 
-        [HttpPost("[action]")]
-        public PaginationViewModel<EmployeeModel> GetAll(int pageNumber = 1, int pageSize = 4)
-        {
-            var result = _employeeService.GetAll();
-            if (!result.Any())
-            {
-                return null;
-            }
-
-            PageInfoViewModel pageInfo = new PageInfoViewModel(pageNumber, result.Count(), pageSize);
-            PaginationViewModel<EmployeeModel> pagination = new PaginationViewModel<EmployeeModel>();
-
-            pagination.List = pagination.Pagination(result, pageNumber, pageSize);
-            pagination.PageInfo = pageInfo;
-
-            return pagination;
-        }
-
-        [HttpPost("[action]")]
-        public EmployeeViewModel GetEmployeeInfo([FromForm]Guid id)
+        [HttpGet("Employee/{id}")]
+        public IActionResult GetEmployeeInfo([FromRoute]Guid id)
         {
             var result = _accountLogic.GetEmployeeInfo(id);
-
-            return result;
+            return Content(JsonConvert.SerializeObject(result), "application/json");
         }
     }
 }

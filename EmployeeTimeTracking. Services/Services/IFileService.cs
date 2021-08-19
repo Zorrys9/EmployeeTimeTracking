@@ -21,7 +21,7 @@ namespace EmployeeTimeTracking.Services.Services
         /// <param name="file">Файл с изображением сотрудника</param>
         /// <param name="employeeId">Идентификатор сотрудника</param>
         /// <returns>Ссылка на изображение в системе</returns>
-        Task<string> SaveImageAsync(IFormFile file, Guid employeeId);
+        Task SaveImageAsync(IFormFile file, Guid employeeId);
         /// <summary>
         /// Удаление изображения сотрудника
         /// </summary>

@@ -9,7 +9,7 @@ namespace EmployeeTimeTracking.Data.Repository
 {
     public interface ISearchReportsRepository
     {
-        IEnumerable<EmployeeReportViewModel> SearchReports(SearchReportsViewModel model);
-
+        Task<ICollection<EmployeeReportViewModel>> SearchReports(SearchReportsViewModel model, PageInfoViewModel pageInfo);
+        Task<int> Count(SearchReportsViewModel model);
     }
 }

@@ -27,49 +27,68 @@ namespace EmployeeTimeTracking._Services.Services.Implementations
             _logger = logger;
         }
 
-        public async Task<Guid?> DeleteAsync(Guid id)
+        public async Task<ReportModel> DeleteAsync(Guid id)
         {
             return await _reportRepository.DeleteAsync(id);
         }
 
-        public IEnumerable<ReportModel> GetAll()
+        public async Task<IEnumerable<ReportModel>> GetAllForPage(PageInfoViewModel pageInfo)
         {
-            return _reportRepository.GetAll();
+            return await _reportRepository.GetAllForPage(pageInfo);
         }
 
-        public ReportModel GetById(Guid id)
+        public async Task<IEnumerable<ReportModel>> GetAll()
         {
-            return _reportRepository.GetById(id);
+            return await _reportRepository.GetAll();
         }
 
-        public async Task<Guid?> InsertAsync(ReportModel model)
+        public async Task<ReportModel> GetById(Guid id)
+        {
+            return await _reportRepository.GetById(id);
+        }
+
+        public async Task<ReportModel> InsertAsync(ReportModel model)
         {
             _logger.Information("A new report has been created");
             return await _reportRepository.InsertAsync(model);
         }
 
-        public async Task<Guid?> UpdateAsync(ReportModel model)
+        public async Task<ReportModel> UpdateAsync(ReportModel model)
         {
             return await _reportRepository.UpdateAsync(model);
         }
 
-        public SummaryReportViewModel SummaryReportById(Guid id)
+        public async Task<SummaryReportViewModel> SummaryReportById(Guid id)
         {
-            return _summaryReportRepository.GetSummaryReportById(id);
+            return await _summaryReportRepository.GetById(id);
         }
 
-        public IEnumerable<SummaryReportViewModel> SummaryReports()
+        public async Task<IEnumerable<SummaryReportViewModel>> SummaryReports()
         {
-            return _summaryReportRepository.GetSummaryReports();
+            return await _summaryReportRepository.GetAll();
         }
 
-        public IEnumerable<EmployeeReportViewModel> SearchReports(SearchReportsViewModel model)
+        public async Task<ICollection<EmployeeReportViewModel>> SearchReports(SearchReportsViewModel model, PageInfoViewModel pageInfo)
         {
             if(model.LastDate == DateTime.MinValue)
             {
                 model.LastDate = DateTime.Now;
             }
-            return _searchReportsRepository.SearchReports(model);
+            return await _searchReportsRepository.SearchReports(model, pageInfo);
+        }
+
+        public async Task<int> CountAll()
+        {
+            return await _reportRepository.Count();
+        }
+
+        public async Task<int> CountFound(SearchReportsViewModel model)
+        {
+            if (model.LastDate == DateTime.MinValue)
+            {
+                model.LastDate = DateTime.Now;
+            }
+            return await _searchReportsRepository.Count(model);
         }
     }
 }

@@ -38,14 +38,6 @@ namespace EmployeeTimeTracking.Common.ViewModels
         /// Должность сотрудника
         /// </summary>
         public string Position { get; set; }
-        /// <summary>
-        /// Фотография сотрудника
-        /// </summary>
-        [IgnoreMapAttribute]
         public IFormFile Avatar { get; set; }
-        /// <summary>
-        /// Ссылка на изображение в системе
-        /// </summary>
-        public string AvatarUrl { get; set; }
     }
 }

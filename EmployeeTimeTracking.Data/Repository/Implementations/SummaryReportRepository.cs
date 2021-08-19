@@ -12,17 +12,17 @@ namespace EmployeeTimeTracking.Data.Repository.Implementations
         public SummaryReportRepository(string connectionString)
             :base(connectionString){ }
 
-        public SummaryReportViewModel GetSummaryReportById(Guid id)
+        public async Task<SummaryReportViewModel> GetById(Guid id)
         {
             var sqlQuery = $"SELECT COUNT(\"Id\") AS \"NumberOfReports\", SUM(\"NumberOfHour\") AS \"NumberOfHOur\", SUM(\"Recycling\") AS \"Recycling\" FROM \"Report\" as \"rep\" JOIN \"EmployeeReports\" as \"emp\" ON rep.\"Id\" = emp.\"ReportId\"  WHERE emp.\"EmployeeId\" = '{id}'";
-            var result = GetEnemy(sqlQuery);
+            var result = await GetEnemyAsync(sqlQuery);
             return result;
         }
 
-        public IEnumerable<SummaryReportViewModel> GetSummaryReports()
+        public async Task<IEnumerable<SummaryReportViewModel>> GetAll()
         {
             var sqlQuery = $"SELECT emp.\"EmployeeId\", COUNT(\"Id\") AS \"NumberOfReports\", SUM(\"NumberOfHour\") AS \"NumberOfHOur\", SUM(\"Recycling\") AS \"Recycling\" FROM \"Report\" as \"rep\" JOIN \"EmployeeReports\" as \"emp\" ON rep.\"Id\" = emp.\"ReportId\" GROUP BY emp.\"EmployeeId\"";
-            var result = GetList(sqlQuery);
+            var result = await GetListAsync(sqlQuery);
             return result;
         }
     }

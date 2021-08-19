@@ -1,4 +1,5 @@
 ﻿using EmployeeTimeTracking.Common.Models;
+using EmployeeTimeTracking.Common.ViewModels;
 using EmployeeTimeTracking.Data.Repository;
 using System;
 using System.Collections.Generic;
@@ -20,22 +21,30 @@ namespace EmployeeTimeTracking.Services.Services.Implementations
             _employeeReportRepository = employeeReportRepository;
         }
 
-        public async Task<Guid> DeleteAsync(Guid reportId)
+        public async Task<EmployeeReportModel> DeleteAsync(Guid reportId)
         {
             return await _employeeReportRepository.DeleteAsync(reportId);
         }
 
-        public IEnumerable<EmployeeReportModel> GetByEmployee(Guid employeeId)
+        public async Task<IEnumerable<EmployeeReportModel>> GetByEmployee(Guid employeeId)
         {
-            return _employeeReportRepository.GetByEmployee(employeeId);
+            return await _employeeReportRepository.GetByEmployee(employeeId);
+        }
+        public async Task<IEnumerable<EmployeeReportModel>> GetByEmployeeForPage(Guid employeeId, PageInfoViewModel pageInfo)
+        {
+            return await _employeeReportRepository.GetByEmployeeForPage(employeeId, pageInfo);
+        }
+        public async Task<int> CountByEmployee(Guid employeeId)
+        {
+            return await _employeeReportRepository.CountByEmployee(employeeId);
         }
 
-        public Guid GetByReport(Guid reportId)
+        public async Task<Guid> GetByReport(Guid reportId)
         {
-            return _employeeReportRepository.GetByReport(reportId);
+            return await _employeeReportRepository.GetByReport(reportId);
         }
 
-        public async Task<Guid?> InsertAsync(EmployeeReportModel model)
+        public async Task<EmployeeReportModel> InsertAsync(EmployeeReportModel model)
         {
             return await _employeeReportRepository.InsertAsync(model);
         }

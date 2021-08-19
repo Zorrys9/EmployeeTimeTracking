@@ -17,29 +17,29 @@ namespace EmployeeTimeTracking._Services.Services
         /// </summary>
         /// <param name="model">Модель сотрудника</param>
         /// <returns>Идентификатор сотрудника</returns>
-        Task<Guid?> InsertAsync(EmployeeModel model);
+        Task<EmployeeModel> InsertAsync(EmployeeModel model);
         /// <summary>
         /// Изменение сотрудника
         /// </summary>
         /// <param name="model">Модель сотрудника</param>
         /// <returns>Идентификатор сотрудника</returns>
-        Task<Guid?> UpdateAsync(EmployeeModel model);
+        Task<EmployeeModel> UpdateAsync(EmployeeModel model);
         /// <summary>
         /// Удаление сотрудника
         /// </summary>
         /// <param name="id">Идентификатор сотрудника</param>
         /// <returns>Идентификатор сотрудника</returns>
-        Task<Guid?> DeleteAsync(Guid id);
+        Task<EmployeeModel> DeleteAsync(Guid id);
         /// <summary>
         /// Получение списка всех сотрудников системы
         /// </summary>
         /// <returns>Список всех сотрудников системы</returns>
-        IEnumerable<EmployeeModel> GetAll();
+        Task<IEnumerable<EmployeeModel>> GetAll();
         /// <summary>
         /// Получение сотрудника по его идентификатору
         /// </summary>
         /// <param name="id">Идентификатор сотрудника</param>
         /// <returns>Модель сотрудника</returns>
-        EmployeeModel Get(Guid id);
+        Task<EmployeeModel> Get(Guid id);
     }
 }

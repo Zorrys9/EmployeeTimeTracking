@@ -11,10 +11,12 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft;
+using Newtonsoft.Json;
 
 namespace EmployeeTimeTracking.Controllers
 {
-    [Route("[controller]")]
+    [Route("Reports")]
     [ApiController]
     public class ReportController : Controller
     {
@@ -29,7 +31,7 @@ namespace EmployeeTimeTracking.Controllers
             _fileService = fileService;
         }
 
-        [HttpPost("[action]")]
+        [HttpPost("")]
         public async Task<IActionResult> Insert([FromForm] ReportViewModel model)
         {
             if(model == null)
@@ -45,7 +47,7 @@ namespace EmployeeTimeTracking.Controllers
             return Ok();
         }
 
-        [HttpPut("[action]")]
+        [HttpPut("")]
         public async Task<IActionResult> Update([FromForm] ReportModel model)
         {
             if (model == null)
@@ -61,7 +63,7 @@ namespace EmployeeTimeTracking.Controllers
             return Ok();
         }
 
-        [HttpDelete("[action]")]
+        [HttpDelete("")]
         public async Task<IActionResult> Delete([Required] Guid id)
         {
             var result = await _trackingLogic.ReportDeleteAsync(id);
@@ -73,63 +75,56 @@ namespace EmployeeTimeTracking.Controllers
             return Ok();
         }
 
-        [HttpGet("[action]")]
-        public PaginationViewModel<EmployeeReportViewModel> GetAll(int pageNumber = 1, int pageSize = 4)
+        [HttpGet("")]
+        public async Task<IActionResult> GetAll(int pageNumber = 1, int pageSize = 4)
         {
-            var result = _trackingLogic.GetAllReports();
-            if (!result.Any())
+            PageInfoViewModel pageInfo = new PageInfoViewModel(pageNumber, 0, pageSize);
+
+            var result = await _trackingLogic.GetAllReportsInPage(pageInfo);
+            result.PageInfo = pageInfo;
+
+            if (!result.List.Any() || result.PageInfo.CountItems == 0)
             {
-                return null;
+                return StatusCode(500);
             }
 
-            PageInfoViewModel pageInfo = new PageInfoViewModel(pageNumber, result.Count(), pageSize);
-            PaginationViewModel<EmployeeReportViewModel> pagination = new PaginationViewModel<EmployeeReportViewModel>();
-
-            pagination.List = pagination.Pagination(result, pageNumber, pageSize);
-            pagination.PageInfo = pageInfo;
-
-            return pagination;
+            return Content(JsonConvert.SerializeObject(result), "application/json");
         }
-
-        [HttpPost("[action]")]
-        public PaginationViewModel<EmployeeReportViewModel> SearchReports([FromForm]SearchReportsViewModel model, int pageNumber = 1, int pageSize = 4)
+        
+        [HttpPost("Search")]
+        public async Task<PaginationViewModel<EmployeeReportViewModel>> SearchReports([FromForm]SearchReportsViewModel model, int pageNumber = 1, int pageSize = 4)
         {
             if (model == null)
             {
-                return GetAll(pageNumber, pageSize);
+                return null;
+                 //return await GetAll(pageNumber, pageSize);
             }
-            var result = _trackingLogic.SearchReports(model);
-            if (!result.Any())
+            PageInfoViewModel pageInfo = new PageInfoViewModel(pageNumber, 0, pageSize);
+            var result = await _trackingLogic.SearchReports(model, pageInfo);
+            if (!result.List.Any() || result.PageInfo.CountItems == 0)
             {
                 return null;
+               // return StatusCode(500);
             }
 
-            PageInfoViewModel pageInfo = new PageInfoViewModel(pageNumber, result.Count(), pageSize);
-            PaginationViewModel<EmployeeReportViewModel> pagination = new PaginationViewModel<EmployeeReportViewModel>();
-
-            pagination.List = pagination.Pagination(result, pageNumber, pageSize);
-            pagination.PageInfo = pageInfo;
-
-            return pagination;
+            //            return Content(JsonConvert.SerializeObject(result), "application/json");
+            return result;
         }
 
-        [HttpGet("[action]")]
-        public PaginationViewModel<EmployeeReportViewModel> GetReportById([Required] Guid id, int pageNumber = 1, int pageSize = 4)
+        [HttpGet("ReportById")]
+        public async Task<IActionResult> GetReportsById([Required] Guid id, int pageNumber = 1, int pageSize = 4)
         {
-            var result = _trackingLogic.GetReportsForEmployee(id);
+            PageInfoViewModel pageInfo = new PageInfoViewModel(pageNumber, 0, pageSize);
 
-            if (!result.Any())
+            var result = await _trackingLogic.GetReportsByEmployeeForPage(id, pageInfo);
+
+            if (!result.List.Any() || result.PageInfo.CountItems == 0)
             {
-                return null;
+                return StatusCode(500);
             }
 
-            PageInfoViewModel pageInfo = new PageInfoViewModel(pageNumber, result.Count(), pageSize);
-            PaginationViewModel<EmployeeReportViewModel> pagination = new PaginationViewModel<EmployeeReportViewModel>();
-
-            pagination.List = pagination.Pagination(result, pageNumber, pageSize);
-            pagination.PageInfo = pageInfo;
-            
-            return pagination;
+          
+            return Content(JsonConvert.SerializeObject(result), "application/json");
         }
     }
 }

@@ -13,12 +13,14 @@ using EmployeeTimeTracking.Services.Services;
 using EmployeeTimeTracking.Services.Services.Implementations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using System;
+using System.Collections.Generic;
 
 namespace EmployeeTimeTracking
 {
@@ -33,6 +35,7 @@ namespace EmployeeTimeTracking
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -46,12 +49,12 @@ namespace EmployeeTimeTracking
 
             var connectionString = Configuration.GetConnectionString("Default");
             var builder = new ContainerBuilder();
+            ILogger logger = new LoggerConfiguration().ReadFrom.Configuration(Configuration).CreateLogger();
 
+
+            builder.Properties.Add("ConnectionString", connectionString);
             builder.Populate(services);
             builder.RegisterModule<AutoFacModule>();
-            ILogger logger = new LoggerConfiguration().ReadFrom.Configuration(Configuration).CreateLogger(); 
-
-
             builder.ComponentRegistryBuilder.Registered += (sender, args) =>
             {
                 args.ComponentRegistration.PipelineBuilding += (sendr, pipeline) =>
@@ -59,55 +62,6 @@ namespace EmployeeTimeTracking
                     pipeline.Use(new ExceptionMiddleware(logger));
                 };
             };
-
-            builder.RegisterType<EmployeeRepository>()
-                .As<IEmployeeRepository>()
-                .InstancePerLifetimeScope()
-                .WithParameter("connectionString", connectionString);
-
-            builder.RegisterType<ReportRepository>()
-                .As<IReportRepository>()
-                .InstancePerLifetimeScope()
-                .WithParameter("connectionString", connectionString);
-
-            builder.RegisterType<EmployeeReportRepository>()
-                .As<IEmployeeReportRepository>()
-                .InstancePerLifetimeScope()
-                .WithParameter("connectionString", connectionString);
-
-            builder.RegisterType<SummaryReportRepository>()
-                .As<ISummaryReportRepository>()
-                .InstancePerLifetimeScope()
-                .WithParameter("connectionString", connectionString);
-
-            builder.RegisterType<SearchReportsRepository>()
-                .As<ISearchReportsRepository>()
-                .InstancePerLifetimeScope()
-                .WithParameter("connectionString", connectionString);
-
-            builder.RegisterType<EmployeeService>()
-                .As<IEmployeeService>()
-                .InstancePerLifetimeScope();
-
-            builder.RegisterType<ReportService>()
-                .As<IReportService>()
-                .InstancePerLifetimeScope();
-
-            builder.RegisterType<EmployeeReportService>()
-                .As<IEmployeeReportService>()
-                .InstancePerLifetimeScope();
-
-            builder.RegisterType<FileService>()
-                .As<IFileService>()
-                .InstancePerLifetimeScope();
-
-            builder.RegisterType<TrackingLogic>()
-                .As<ITrackingLogic>()
-                .InstancePerLifetimeScope();
-
-            builder.RegisterType<AccountLogic>()
-                .As<IAccountLogic>()
-                .InstancePerLifetimeScope();
 
             builder.RegisterType<ExceptionMiddleware>();
 

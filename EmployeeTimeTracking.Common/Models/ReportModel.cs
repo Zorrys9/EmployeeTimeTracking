@@ -9,7 +9,6 @@ namespace EmployeeTimeTracking.Common.Models
     public class ReportModel
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
         public DateTime Date { get; set; }
         public int NumberOfHour { get; set; }
         public int Recycling { get; set; }

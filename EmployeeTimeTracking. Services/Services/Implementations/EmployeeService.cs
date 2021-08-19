@@ -23,30 +23,30 @@ namespace EmployeeTimeTracking._Services.Services.Implementations
             _logger = logger;
         }
 
-        public async Task<Guid?> InsertAsync(EmployeeModel model)
+        public async Task<EmployeeModel> InsertAsync(EmployeeModel model)
         {
             _logger.Information("A new employee has been added");
             return await _employeeRepository.InsertAsync(model);
         }
 
-        public async Task<Guid?> UpdateAsync(EmployeeModel model)
+        public async Task<EmployeeModel> UpdateAsync(EmployeeModel model)
         {
             return await _employeeRepository.UpdateAsync(model);
         }
 
-        public async Task<Guid?> DeleteAsync(Guid id)
+        public async Task<EmployeeModel> DeleteAsync(Guid id)
         {
             return await _employeeRepository.DeleteAsync(id);
         }
 
-        public IEnumerable<EmployeeModel> GetAll()
+        public async Task<IEnumerable<EmployeeModel>> GetAll()
         {
-            return _employeeRepository.GetAll();
+            return await _employeeRepository.GetAll();
         }
 
-        public EmployeeModel Get(Guid id)
+        public async Task<EmployeeModel> Get(Guid id)
         {
-            return _employeeRepository.Get(id);
+            return await _employeeRepository.GetById(id);
         }
     }
 }

@@ -23,12 +23,6 @@ namespace EmployeeTimeTracking.Common.ViewModels
         [Required(ErrorMessage = "Не указан идентификатор отчета")]
         public Guid ReportId { get; set; }
         /// <summary>
-        /// Суть работы, кратко
-        /// </summary>
-        [Required(ErrorMessage = "Не указан вид работы")]
-        [MaxLength(50, ErrorMessage = "Краткое описание работы не должно превышать 50 символов")]
-        public string Name { get; set; }
-        /// <summary>
         /// Дата создания отчета
         /// </summary>
         [Required(ErrorMessage ="Не указана дата создания отчета")]

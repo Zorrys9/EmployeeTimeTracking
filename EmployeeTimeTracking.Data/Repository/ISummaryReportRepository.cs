@@ -9,7 +9,7 @@ namespace EmployeeTimeTracking.Data.Repository
 {
     public interface ISummaryReportRepository
     {
-        SummaryReportViewModel GetSummaryReportById(Guid id);
-        IEnumerable<SummaryReportViewModel> GetSummaryReports();
+        Task<SummaryReportViewModel> GetById(Guid id);
+        Task<IEnumerable<SummaryReportViewModel>> GetAll();
     }
 }

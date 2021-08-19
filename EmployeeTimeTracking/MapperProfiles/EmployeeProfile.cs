@@ -20,9 +20,7 @@ namespace EmployeeTimeTracking.MapperProfiles
                 .ForMember(view => view.PositionEmployee, view => view.MapFrom(model => model.Position))
                 .ReverseMap();
 
-            CreateMap<EmployeeModel, EmployeeViewModel>()
-              .ForMember(view => view.AvatarUrl, view => view.MapFrom(model => model.Avatar))
-              .ReverseMap();      
+            CreateMap<EmployeeModel, EmployeeViewModel>().ReverseMap();      
         }
     }
 }

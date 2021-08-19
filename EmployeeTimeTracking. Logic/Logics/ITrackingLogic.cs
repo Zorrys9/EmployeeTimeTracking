@@ -12,17 +12,18 @@ namespace EmployeeTimeTracking._Logic.Logics
     {
         Task<bool> ReportInsertAsync(ReportViewModel model);
         Task<bool> ReportDeleteAsync(Guid reportId);
-        IEnumerable<EmployeeReportViewModel> GetReportsForEmployee(Guid employeeId);
-        IEnumerable<EmployeeReportViewModel> GetAllReports();
-        FileContentResult DetailReportForAllInJson();
-        FileContentResult DetailReportForAllInXml();
-        FileContentResult DetailReportForEmployeeInJson(Guid employeeId);
-        FileContentResult DetailReportForEmployeeInXml(Guid employeeId);
-        FileContentResult SummaryReportsInJson();
-        FileContentResult SummaryReportsInXml();
-        FileContentResult SummaryReportForEmployeeInJson(Guid employeeId);
-        FileContentResult SummaryReportForEmployeeInXml(Guid employeeId);
+        Task<PaginationViewModel<EmployeeReportViewModel>> GetReportsByEmployeeForPage(Guid employeeId, PageInfoViewModel pageInfo);
+        Task<ICollection<EmployeeReportViewModel>> GetReportsByEmployee(Guid employeeId);
+        Task<PaginationViewModel<EmployeeReportViewModel>> GetAllReportsInPage(PageInfoViewModel pageInfo);
+        Task<FileContentResult> DetailReportForAllInJson();
+        Task<FileContentResult> DetailReportForAllInXml();
+        Task<FileContentResult> DetailReportForEmployeeInJson(Guid employeeId);
+        Task<FileContentResult> DetailReportForEmployeeInXml(Guid employeeId);
+        Task<FileContentResult> SummaryReportsInJson();
+        Task<FileContentResult> SummaryReportsInXml();
+        Task<FileContentResult> SummaryReportForEmployeeInJson(Guid employeeId);
+        Task<FileContentResult> SummaryReportForEmployeeInXml(Guid employeeId);
         Task<bool> SetReportsFromXls(IFormFile file);
-        IEnumerable<EmployeeReportViewModel> SearchReports(SearchReportsViewModel model);
+        Task<PaginationViewModel<EmployeeReportViewModel>> SearchReports(SearchReportsViewModel model, PageInfoViewModel pageInfo);
     }
 }

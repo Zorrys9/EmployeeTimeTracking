@@ -1,3 +1,8 @@
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\obj\Debug\net5.0\EmployeeTimeTracking.Services.csproj.AssemblyReference.cache
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\obj\Debug\net5.0\EmployeeTimeTracking.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\obj\Debug\net5.0\EmployeeTimeTracking.Services.AssemblyInfoInputs.cache
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\obj\Debug\net5.0\EmployeeTimeTracking.Services.AssemblyInfo.cs
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\obj\Debug\net5.0\EmployeeTimeTracking.Services.csproj.CoreCompileInputs.cache
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\bin\Debug\net5.0\EmployeeTimeTracking.Services.deps.json
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\bin\Debug\net5.0\EmployeeTimeTracking.Services.dll
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\bin\Debug\net5.0\ref\EmployeeTimeTracking.Services.dll
@@ -6,11 +11,6 @@ C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Servic
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\bin\Debug\net5.0\EmployeeTimeTracking.Data.dll
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\bin\Debug\net5.0\EmployeeTimeTracking.Common.pdb
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\bin\Debug\net5.0\EmployeeTimeTracking.Data.pdb
-C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\obj\Debug\net5.0\EmployeeTimeTracking.Services.csproj.AssemblyReference.cache
-C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\obj\Debug\net5.0\EmployeeTimeTracking.Services.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\obj\Debug\net5.0\EmployeeTimeTracking.Services.AssemblyInfoInputs.cache
-C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\obj\Debug\net5.0\EmployeeTimeTracking.Services.AssemblyInfo.cs
-C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\obj\Debug\net5.0\EmployeeTimeTracking.Services.csproj.CoreCompileInputs.cache
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\obj\Debug\net5.0\EmployeeTimeTracking.Services.csproj.CopyComplete
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\obj\Debug\net5.0\EmployeeTimeTracking.Services.dll
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\obj\Debug\net5.0\ref\EmployeeTimeTracking.Services.dll

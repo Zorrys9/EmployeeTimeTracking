@@ -26,12 +26,6 @@ namespace EmployeeTimeTracking.Common.ViewModels
         [XmlElement("Должность сотрудника")]
         public string PositionEmployee { get; set; }
         /// <summary>
-        /// Краткое описание работы
-        /// </summary>
-        [JsonProperty("Краткое описание работы")]
-        [XmlElement("Краткое описание работы")]
-        public string Name { get; set; }
-        /// <summary>
         /// Количество отработанных часов
         /// </summary>
         [JsonProperty("Количество отработанных часов")]

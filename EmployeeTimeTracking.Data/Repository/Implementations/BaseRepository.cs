@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeTimeTracking.Data.Repository.Implementations
 {
-    public class BaseRepository<T> :IBaseRepository<T> where T: class, new()
+    public class BaseRepository<T>  where T: class, new()
     {
         private readonly string _connectionString;
 
@@ -27,31 +27,31 @@ namespace EmployeeTimeTracking.Data.Repository.Implementations
             return connection;
         }
 
-        protected IEnumerable<T> GetList(string sql)
+        protected async Task<IEnumerable<T>> GetListAsync(string sql)
         {
             using(var conn = CreateConnection())
             {
-                var result = conn.Query<T>(sql);
+                var result = await conn.QueryAsync<T>(sql);
 
                 return result;
             }
         }
 
-        protected T GetEnemy(string sql)
+        protected async Task<T> GetEnemyAsync(string sql)
         {
             using(var conn= CreateConnection())
             {
-                var result = conn.QueryFirstOrDefault<T>(sql);
+                var result = await conn.QueryFirstOrDefaultAsync<T>(sql);
 
                 return result;
             }
         }
         
-        protected object GetColumn(string sql)
+        protected async Task<object> GetColumnAsync(string sql)
         {
             using(var conn = CreateConnection())
             {
-                var result = conn.ExecuteScalar(sql);
+                var result = await conn.ExecuteScalarAsync(sql);
 
                 return result;
             }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EmployeeTimeTracking.Common.Models;
+using EmployeeTimeTracking.Common.ViewModels;
 using EmployeeTimeTracking.Data.EntityModels;
 using System;
 using System.Collections.Generic;
@@ -17,32 +18,44 @@ namespace EmployeeTimeTracking.Data.Repository.Implementations
         {
             _mapper = mapper;
         }
-        public async Task<Guid> DeleteAsync(Guid reportId)
+        public async Task<EmployeeReportModel> DeleteAsync(Guid reportId)
         {
-            var sqlQuery = $"DELETE FROM \"EmployeeReports\" WHERE \"ReportId\" = '{reportId}'  returning \"ReportId\"";
-            var result = await ExecuteAsync(sqlQuery);
-            return result;
+            var sqlQuery = $"DELETE FROM \"EmployeeReports\" WHERE \"ReportId\" = '{reportId}'  returning *";
+            var result = await GetEnemyAsync(sqlQuery);
+            return _mapper.Map<EmployeeReportModel>(result);
         }
 
-        public IEnumerable<EmployeeReportModel> GetByEmployee(Guid employeeId)
+        public async Task<IEnumerable<EmployeeReportModel>> GetByEmployee(Guid employeeId)
         {
             var sqlQuery = $"SELECT * FROM \"EmployeeReports\" WHERE \"EmployeeId\" = '{employeeId}'";
-            var result = GetList(sqlQuery);
+            var result = await GetListAsync(sqlQuery);
             return _mapper.Map<IEnumerable<EmployeeReportModel>>(result);
         }
+        public async Task<IEnumerable<EmployeeReportModel>> GetByEmployeeForPage(Guid employeeId, PageInfoViewModel pageInfo)
+        {
+            var sqlQuery = $"SELECT * FROM \"EmployeeReports\" WHERE \"EmployeeId\" = '{employeeId}' LIMIT {pageInfo.PageSize} OFFSET {(pageInfo.CurrentPage - 1) * pageInfo.PageSize}";
+            var result = await GetListAsync(sqlQuery);
+            return _mapper.Map<IEnumerable<EmployeeReportModel>>(result);
+        }
+        public async Task<int> CountByEmployee(Guid employeeId)
+        {
+            var sqlQuery = $"SELECT COUNT(*) FROM \"EmployeeReports\" WHERE \"EmployeeId\" = '{employeeId}'";
+            var result = await GetColumnAsync(sqlQuery);
+            return Convert.ToInt32(result);
+        }
 
-        public Guid GetByReport(Guid reportId)
+        public async Task<Guid> GetByReport(Guid reportId)
         {
             var sqlQuery = $"SELECT \"EmployeeId\" FROM \"EmployeeReports\" WHERE \"ReportId\" = '{reportId}'";
-            var result = (Guid)GetColumn(sqlQuery);
+            var result =  (Guid) await GetColumnAsync(sqlQuery);
             return result;
         }
 
-        public async Task<Guid> InsertAsync(EmployeeReportModel model)
+        public async Task<EmployeeReportModel> InsertAsync(EmployeeReportModel model)
         {
-            var sqlQuery = $"INSERT INTO \"EmployeeReports\" (\"ReportId\", \"EmployeeId\") VALUES ('{model.ReportId}', '{model.EmployeeId}')  returning \"ReportId\"";
-            var result = await ExecuteAsync(sqlQuery);
-            return result;
+            var sqlQuery = $"INSERT INTO \"EmployeeReports\" (\"ReportId\", \"EmployeeId\") VALUES ('{model.ReportId}', '{model.EmployeeId}')  returning *";
+            var result = await GetEnemyAsync(sqlQuery);
+            return _mapper.Map<EmployeeReportModel>(result);
         }
     }
 }

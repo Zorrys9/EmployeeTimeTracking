@@ -1,3 +1,8 @@
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\obj\Debug\net5.0\EmployeeTimeTracking.Logic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\obj\Debug\net5.0\EmployeeTimeTracking.Logic.AssemblyInfoInputs.cache
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\obj\Debug\net5.0\EmployeeTimeTracking.Logic.AssemblyInfo.cs
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\obj\Debug\net5.0\EmployeeTimeTracking.Logic.csproj.CoreCompileInputs.cache
+C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\obj\Debug\net5.0\EmployeeTimeTracking.Logic.csproj.AssemblyReference.cache
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\bin\Debug\net5.0\EmployeeTimeTracking.Logic.deps.json
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\bin\Debug\net5.0\EmployeeTimeTracking.Logic.dll
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\bin\Debug\net5.0\ref\EmployeeTimeTracking.Logic.dll
@@ -8,11 +13,6 @@ C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\bin\Debug\net5.0\EmployeeTimeTracking.Services.pdb
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\bin\Debug\net5.0\EmployeeTimeTracking.Common.pdb
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\bin\Debug\net5.0\EmployeeTimeTracking.Data.pdb
-C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\obj\Debug\net5.0\EmployeeTimeTracking.Logic.csproj.AssemblyReference.cache
-C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\obj\Debug\net5.0\EmployeeTimeTracking.Logic.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\obj\Debug\net5.0\EmployeeTimeTracking.Logic.AssemblyInfoInputs.cache
-C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\obj\Debug\net5.0\EmployeeTimeTracking.Logic.AssemblyInfo.cs
-C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\obj\Debug\net5.0\EmployeeTimeTracking.Logic.csproj.CoreCompileInputs.cache
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\obj\Debug\net5.0\EmployeeTimeTracking.Logic.csproj.CopyComplete
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\obj\Debug\net5.0\EmployeeTimeTracking.Logic.dll
 C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\obj\Debug\net5.0\ref\EmployeeTimeTracking.Logic.dll

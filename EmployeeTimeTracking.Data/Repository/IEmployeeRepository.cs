@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace EmployeeTimeTracking.Data.Repository
 {
-    public interface IEmployeeRepository : IBaseRepository<EmployeeEntityModel>
+    public interface IEmployeeRepository
     {
+        Task<EmployeeModel> InsertAsync(EmployeeModel model);
 
-        Task<Guid> InsertAsync(EmployeeModel model);
+        Task<EmployeeModel> UpdateAsync(EmployeeModel model);
 
-        Task<Guid> UpdateAsync(EmployeeModel model);
+        Task<EmployeeModel> DeleteAsync(Guid id);
 
-        Task<Guid> DeleteAsync(Guid id);
+        Task<IEnumerable<EmployeeModel>> GetAll();
 
-        IEnumerable<EmployeeModel> GetAll();
-
-        EmployeeModel Get(Guid employeeId);
+        Task<EmployeeModel> GetById(Guid employeeId);
     }
 }
