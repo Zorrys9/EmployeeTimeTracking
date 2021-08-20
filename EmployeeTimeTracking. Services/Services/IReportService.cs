@@ -1,5 +1,5 @@
-﻿using EmployeeTimeTracking.Common.Models;
-using EmployeeTimeTracking.Common.ViewModels;
+﻿using EmployeeTimeTracking.Common.CommonModels;
+using EmployeeTimeTracking.Services.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +35,7 @@ namespace EmployeeTimeTracking.Services.Services
         /// Вывод отчетов всех сотрудников на страницу
         /// </summary>
         /// <returns>Список всех отчетов в системе</returns>
-        Task<IEnumerable<ReportModel>> GetAllForPage(PageInfoViewModel pageInfo);
+        Task<IEnumerable<ReportModel>> GetAllForPage(int pageSize, int currentPage);
         /// <summary>
         /// Вывод всех отчетов всех сотрудников
         /// </summary>
@@ -46,24 +46,24 @@ namespace EmployeeTimeTracking.Services.Services
         /// </summary>
         /// <param name="id">Идентификатор отчета</param>
         /// <returns>Модель отчета</returns>
-        Task<ReportModel> GetById(Guid id);
+        Task<ReportModel> Get(Guid id);
         /// <summary>
         /// Создание краткого отчета по его идентификатору
         /// </summary>
         /// <param name="id">Идентификатор отчета</param>
         /// <returns>Модель представление краткого отчета</returns>
-       Task<SummaryReportViewModel> SummaryReportById(Guid id);
+       Task<SummaryReportModel> SummaryReport(Guid id);
         /// <summary>
         /// Получение всех кратких отчетов
         /// </summary>
         /// <returns>Список моделей представления кратких отчетов</returns>
-       Task<IEnumerable<SummaryReportViewModel>> SummaryReports();
+       Task<IEnumerable<SummaryReportModel>> SummaryReports();
         /// <summary>
         /// Получение всех отчетов с возможностью фильтрации
         /// </summary>
         /// <param name="model">Модель представления фильтра поиска</param>
         /// <returns>Список моделей представления кратких отчетов</returns>
-       Task<ICollection<EmployeeReportViewModel>> SearchReports(SearchReportsViewModel model, PageInfoViewModel pageInfo);
+       Task<ICollection<EmployeeReportModel>> SearchReports(SearchReportModel model, int pageSize, int currentPage);
        /// <summary>
        /// Получение количества всех отчетов в БД
        /// </summary>
@@ -74,6 +74,6 @@ namespace EmployeeTimeTracking.Services.Services
         /// </summary>
         /// <param name="model">Модель с условиями поиска отчетов</param>
         /// <returns>Количество найденных отчетов</returns>
-        Task<int> CountFound(SearchReportsViewModel model);
+        Task<int> CountFound(SearchReportModel model);
     }
 }

@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using EmployeeTimeTracking._Services.Services;
-using EmployeeTimeTracking.Common.Models;
-using EmployeeTimeTracking.Common.ViewModels;
+using EmployeeTimeTracking.Common.CommonModels;
+using EmployeeTimeTracking.Logic.ViewModels;
+using EmployeeTimeTracking.Services.Models;
 using EmployeeTimeTracking.Services.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,44 +15,43 @@ namespace EmployeeTimeTracking._Logic.Logics.Implementations
 {
     public class TrackingLogic : ITrackingLogic
     {
-        private readonly IReportService _reportService;
         private readonly IEmployeeReportService _employeeReportService;
         private readonly IEmployeeService _employeeService;
-        private readonly IMapper _mapper;
+        private readonly IReportService _reportService;
         private readonly IFileService _fileService;
-        public TrackingLogic(IReportService reportService, IEmployeeReportService employeeReportService, IMapper mapper, IEmployeeService employeeService, IFileService fileService)
+        private readonly IMapper _mapper;
+        public TrackingLogic(IReportService reportService, IEmployeeReportService employeeReportService,
+            IMapper mapper, IEmployeeService employeeService, IFileService fileService)
         {
-            _reportService = reportService;
             _employeeReportService = employeeReportService;
-            _mapper = mapper;
             _employeeService = employeeService;
+            _reportService = reportService;
             _fileService = fileService;
+            _mapper = mapper;
         }
-        public async Task<bool> ReportDeleteAsync(Guid reportId)
+        public async Task<bool> DeleteReportAsync(Guid reportId)
         {
             var resultDelete = await _employeeReportService.DeleteAsync(reportId);
             var result = await _reportService.DeleteAsync(resultDelete.ReportId);
-
             return result != null;
         }
 
-        public async Task<bool> ReportInsertAsync(ReportViewModel model)
+        public async Task<bool> InsertReportAsync(ReportViewModel model)
         {
             var reportModel = _mapper.Map<ReportModel>(model);
             var report = await _reportService.InsertAsync(reportModel);
             var employeeReportModel = _mapper.Map<EmployeeReportModel>(model);
             employeeReportModel.ReportId =  report.Id;
-
             var result = await _employeeReportService.InsertAsync(employeeReportModel);
             return result != null;
         }
 
-        public async Task<PaginationViewModel<EmployeeReportViewModel>> GetAllReportsInPage(PageInfoViewModel pageInfo)
+        public async Task<PaginationViewModel<EmployeeReportViewModel>> GetReportsForPage(PageInfoViewModel pageInfo)
         {
             pageInfo.CountItems = await _reportService.CountAll();
             pageInfo.CalculateTotalPage();
 
-            var reportsList = await _reportService.GetAllForPage(pageInfo);
+            var reportsList = await _reportService.GetAllForPage(pageInfo.PageSize, pageInfo.CurrentPage);
             PaginationViewModel<EmployeeReportViewModel> result = new PaginationViewModel<EmployeeReportViewModel>();
 
             foreach(var report in reportsList)
@@ -85,26 +85,25 @@ namespace EmployeeTimeTracking._Logic.Logics.Implementations
             return result;
         }
 
-        public async Task<PaginationViewModel<EmployeeReportViewModel>> SearchReports([FromForm]SearchReportsViewModel model, PageInfoViewModel pageInfo)
+        public async Task<PaginationViewModel<EmployeeReportViewModel>> SearchReports(SearchReportModel model, PageInfoViewModel pageInfo)
         {
             pageInfo.CountItems = await _reportService.CountFound(model);
             pageInfo.CalculateTotalPage();
-            var reports = await _reportService.SearchReports(model, pageInfo);
+            var reports = await _reportService.SearchReports(model, pageInfo.PageSize, pageInfo.CurrentPage);
 
             PaginationViewModel<EmployeeReportViewModel> result = new();
 
             result.PageInfo = pageInfo;
-            result.List = reports;
-
+            result.List = _mapper.Map<ICollection<EmployeeReportViewModel>>(reports);
             return result;
         }
 
-        public async Task<PaginationViewModel<EmployeeReportViewModel>> GetReportsByEmployeeForPage(Guid employeeId, PageInfoViewModel pageInfo)
+        public async Task<PaginationViewModel<EmployeeReportViewModel>> GetReportsEmployeeForPage(Guid employeeId, PageInfoViewModel pageInfo)
         {
             pageInfo.CountItems = await _employeeReportService.CountByEmployee(employeeId);
             pageInfo.CalculateTotalPage();
 
-            var employeeReportsList = await _employeeReportService.GetByEmployeeForPage(employeeId, pageInfo);
+            var employeeReportsList = await _employeeReportService.GetByEmployeeForPage(employeeId, pageInfo.PageSize, pageInfo.CurrentPage);
             PaginationViewModel<EmployeeReportViewModel> pagination = new();
             pagination.PageInfo = pageInfo;
             pagination.List = new List<EmployeeReportViewModel>();
@@ -112,7 +111,7 @@ namespace EmployeeTimeTracking._Logic.Logics.Implementations
             foreach(var item in employeeReportsList)
             {
                 var employee = await _employeeService.Get(item.EmployeeId);
-                var report = await _reportService.GetById(item.ReportId);
+                var report = await _reportService.Get(item.ReportId);
                 EmployeeReportViewModel viewModel = _mapper.Map<EmployeeReportViewModel>(report);
                 viewModel.FullNameEmployee = _mapper.Map<EmployeeReportViewModel>(employee).FullNameEmployee;
                 viewModel.PositionEmployee = employee.Position;
@@ -121,16 +120,15 @@ namespace EmployeeTimeTracking._Logic.Logics.Implementations
             return pagination;
         }
 
-        public async Task<ICollection<EmployeeReportViewModel>> GetReportsByEmployee(Guid employeeId)
+        public async Task<ICollection<EmployeeReportViewModel>> GetReportsEmployee(Guid employeeId)
         {
-
             var employeeReportsList = await _employeeReportService.GetByEmployee(employeeId);
             ICollection<EmployeeReportViewModel> result = new List<EmployeeReportViewModel>();
 
             foreach (var item in employeeReportsList)
             {
                 var employee = await _employeeService.Get(item.EmployeeId);
-                var report = await _reportService.GetById(item.ReportId);
+                var report = await _reportService.Get(item.ReportId);
                 EmployeeReportViewModel viewModel = _mapper.Map<EmployeeReportViewModel>(report);
                 viewModel.FullNameEmployee = _mapper.Map<EmployeeReportViewModel>(employee).FullNameEmployee;
                 viewModel.PositionEmployee = employee.Position;
@@ -139,47 +137,47 @@ namespace EmployeeTimeTracking._Logic.Logics.Implementations
             return result;
         }
 
-        public async Task<FileContentResult> DetailReportForAllInJson()
+        public async Task<FileContentResult> DetailReportsJson()
         {
             var reports = await GetAllReports();
-            return _fileService.DownloadJson(reports);
+            return _fileService.GetJson(reports);
         }
 
-        public async Task<FileContentResult> DetailReportForAllInXml()
+        public async Task<FileContentResult> DetailReportsXml()
         {
             var reports = await GetAllReports();
-            return _fileService.DownloadXml(reports);
+            return _fileService.GetXml(reports);
         }
 
-        public async Task<FileContentResult> DetailReportForEmployeeInJson(Guid employeeId)
+        public async Task<FileContentResult> DetailReportsEmployeeJson(Guid employeeId)
         {
-            var reports = await GetReportsByEmployee(employeeId);
-            return _fileService.DownloadJson(reports);
+            var reports = await GetReportsEmployee(employeeId);
+            return _fileService.GetJson(reports);
         }
         
-        public async Task<FileContentResult> DetailReportForEmployeeInXml(Guid employeeId)
+        public async Task<FileContentResult> DetailReportsEmployeeXml(Guid employeeId)
         {
-            var reports = await GetReportsByEmployee(employeeId);
-            return _fileService.DownloadXml(reports);
+            var reports = await GetReportsEmployee(employeeId);
+            return _fileService.GetXml(reports);
         }
-        public async Task<FileContentResult> SummaryReportForEmployeeInJson(Guid employeeId)
+        public async Task<FileContentResult> SummaryReportsEmployeeJson(Guid employeeId)
         {
-            var report = await _reportService.SummaryReportById(employeeId);
+            var report = await _reportService.SummaryReport(employeeId);
             var employee = await _employeeService.Get(employeeId);
             report.FullName = $"{employee.FirstName} {employee.SecondName} {employee.LastName}";
             report.Position = employee.Position;
-            return _fileService.DownloadJson(report);
+            return _fileService.GetJson(report);
         }
 
-        public async Task<FileContentResult> SummaryReportForEmployeeInXml(Guid employeeId)
+        public async Task<FileContentResult> SummaryReportsEmployeeXml(Guid employeeId)
         {
-            var report = await _reportService.SummaryReportById(employeeId);
+            var report = await _reportService.SummaryReport(employeeId);
             var employee = await _employeeService.Get(employeeId);
             report.FullName = $"{employee.FirstName} {employee.SecondName} {employee.LastName}";
             report.Position = employee.Position;
-            return _fileService.DownloadXml(report);
+            return _fileService.GetXml(report);
         }
-        public async Task<FileContentResult> SummaryReportsInJson()
+        public async Task<FileContentResult> SummaryReportsJson()
         {
             var reports = await _reportService.SummaryReports();
             foreach (var report in reports)
@@ -188,10 +186,10 @@ namespace EmployeeTimeTracking._Logic.Logics.Implementations
                 report.FullName = $"{employee.FirstName} {employee.SecondName} {employee.LastName}";
                 report.Position = employee.Position;
             }
-            return _fileService.DownloadJson(reports);
+            return _fileService.GetJson(reports);
         }
 
-        public async Task<FileContentResult> SummaryReportsInXml()
+        public async Task<FileContentResult> SummaryReportsXml()
         {
             var reports = await _reportService.SummaryReports();
             foreach (var report in reports)
@@ -200,12 +198,12 @@ namespace EmployeeTimeTracking._Logic.Logics.Implementations
                 report.FullName = $"{employee.FirstName} {employee.SecondName} {employee.LastName}";
                 report.Position = employee.Position;
             }
-            return _fileService.DownloadXml(reports);
+            return _fileService.GetXml(reports);
         }
 
-        public async Task<bool> SetReportsFromXls(IFormFile file)
+        public async Task<bool> SetReports(IFormFile file)
         {
-            var reports = _fileService.GetReportsFromXls(file);
+            var reports = _fileService.GetReportsFromFile(file);
 
             if(reports == null || file == null)
             {

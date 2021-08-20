@@ -56,10 +56,10 @@ Npgsql.PostgresException (0x80004005): 42601: syntax error at or near "'*'"
    at Npgsql.NpgsqlCommand.ExecuteScalar(Boolean async, CancellationToken cancellationToken)
    at Dapper.SqlMapper.ExecuteScalarImplAsync[T](IDbConnection cnn, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 1210
    at EmployeeTimeTracking.Data.Repository.Implementations.BaseRepository`1.GetColumnAsync(String sql)
-   at EmployeeTimeTracking.Data.Repository.Implementations.SearchReportsRepository.Count(SearchReportsViewModel model)
-   at EmployeeTimeTracking._Services.Services.Implementations.ReportService.CountFound(SearchReportsViewModel model) in C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\Services\Implementations\ReportService.cs:line 87
-   at EmployeeTimeTracking._Logic.Logics.Implementations.TrackingLogic.SearchReports(SearchReportsViewModel model, PageInfoViewModel pageInfo) in C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\Logics\Implementations\TrackingLogic.cs:line 90
-   at EmployeeTimeTracking.Controllers.ReportController.SearchReports(SearchReportsViewModel model, Int32 pageNumber, Int32 pageSize) in C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\Controllers\ReportController.cs:line 102
+   at EmployeeTimeTracking.Data.Repository.Implementations.SearchReportsRepository.Count(SearchReportModel model)
+   at EmployeeTimeTracking._Services.Services.Implementations.ReportService.CountFound(SearchReportModel model) in C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\Services\Implementations\ReportService.cs:line 87
+   at EmployeeTimeTracking._Logic.Logics.Implementations.TrackingLogic.SearchReports(SearchReportModel model, PageInfoViewModel pageInfo) in C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\Logics\Implementations\TrackingLogic.cs:line 90
+   at EmployeeTimeTracking.Controllers.ReportController.SearchReports(SearchReportModel model, Int32 pageNumber, Int32 pageSize) in C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\Controllers\ReportController.cs:line 102
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
@@ -93,10 +93,10 @@ Npgsql.PostgresException (0x80004005): 42703: column rep.* does not exist
    at Npgsql.NpgsqlCommand.ExecuteScalar(Boolean async, CancellationToken cancellationToken)
    at Dapper.SqlMapper.ExecuteScalarImplAsync[T](IDbConnection cnn, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 1210
    at EmployeeTimeTracking.Data.Repository.Implementations.BaseRepository`1.GetColumnAsync(String sql)
-   at EmployeeTimeTracking.Data.Repository.Implementations.SearchReportsRepository.Count(SearchReportsViewModel model)
-   at EmployeeTimeTracking._Services.Services.Implementations.ReportService.CountFound(SearchReportsViewModel model) in C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\Services\Implementations\ReportService.cs:line 87
-   at EmployeeTimeTracking._Logic.Logics.Implementations.TrackingLogic.SearchReports(SearchReportsViewModel model, PageInfoViewModel pageInfo) in C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\Logics\Implementations\TrackingLogic.cs:line 90
-   at EmployeeTimeTracking.Controllers.ReportController.SearchReports(SearchReportsViewModel model, Int32 pageNumber, Int32 pageSize) in C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\Controllers\ReportController.cs:line 102
+   at EmployeeTimeTracking.Data.Repository.Implementations.SearchReportsRepository.Count(SearchReportModel model)
+   at EmployeeTimeTracking._Services.Services.Implementations.ReportService.CountFound(SearchReportModel model) in C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\Services\Implementations\ReportService.cs:line 87
+   at EmployeeTimeTracking._Logic.Logics.Implementations.TrackingLogic.SearchReports(SearchReportModel model, PageInfoViewModel pageInfo) in C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\Logics\Implementations\TrackingLogic.cs:line 90
+   at EmployeeTimeTracking.Controllers.ReportController.SearchReports(SearchReportModel model, Int32 pageNumber, Int32 pageSize) in C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\Controllers\ReportController.cs:line 102
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
@@ -130,10 +130,10 @@ Npgsql.PostgresException (0x80004005): 42703: column "*" does not exist
    at Npgsql.NpgsqlCommand.ExecuteScalar(Boolean async, CancellationToken cancellationToken)
    at Dapper.SqlMapper.ExecuteScalarImplAsync[T](IDbConnection cnn, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 1210
    at EmployeeTimeTracking.Data.Repository.Implementations.BaseRepository`1.GetColumnAsync(String sql)
-   at EmployeeTimeTracking.Data.Repository.Implementations.SearchReportsRepository.Count(SearchReportsViewModel model)
-   at EmployeeTimeTracking._Services.Services.Implementations.ReportService.CountFound(SearchReportsViewModel model) in C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\Services\Implementations\ReportService.cs:line 87
-   at EmployeeTimeTracking._Logic.Logics.Implementations.TrackingLogic.SearchReports(SearchReportsViewModel model, PageInfoViewModel pageInfo) in C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\Logics\Implementations\TrackingLogic.cs:line 90
-   at EmployeeTimeTracking.Controllers.ReportController.SearchReports(SearchReportsViewModel model, Int32 pageNumber, Int32 pageSize) in C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\Controllers\ReportController.cs:line 102
+   at EmployeeTimeTracking.Data.Repository.Implementations.SearchReportsRepository.Count(SearchReportModel model)
+   at EmployeeTimeTracking._Services.Services.Implementations.ReportService.CountFound(SearchReportModel model) in C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\Services\Implementations\ReportService.cs:line 87
+   at EmployeeTimeTracking._Logic.Logics.Implementations.TrackingLogic.SearchReports(SearchReportModel model, PageInfoViewModel pageInfo) in C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\Logics\Implementations\TrackingLogic.cs:line 90
+   at EmployeeTimeTracking.Controllers.ReportController.SearchReports(SearchReportModel model, Int32 pageNumber, Int32 pageSize) in C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\Controllers\ReportController.cs:line 102
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
@@ -167,10 +167,10 @@ Npgsql.PostgresException (0x80004005): 42703: column "*" does not exist
    at Npgsql.NpgsqlCommand.ExecuteScalar(Boolean async, CancellationToken cancellationToken)
    at Dapper.SqlMapper.ExecuteScalarImplAsync[T](IDbConnection cnn, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 1210
    at EmployeeTimeTracking.Data.Repository.Implementations.BaseRepository`1.GetColumnAsync(String sql)
-   at EmployeeTimeTracking.Data.Repository.Implementations.SearchReportsRepository.Count(SearchReportsViewModel model)
-   at EmployeeTimeTracking._Services.Services.Implementations.ReportService.CountFound(SearchReportsViewModel model) in C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\Services\Implementations\ReportService.cs:line 87
-   at EmployeeTimeTracking._Logic.Logics.Implementations.TrackingLogic.SearchReports(SearchReportsViewModel model, PageInfoViewModel pageInfo) in C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\Logics\Implementations\TrackingLogic.cs:line 90
-   at EmployeeTimeTracking.Controllers.ReportController.SearchReports(SearchReportsViewModel model, Int32 pageNumber, Int32 pageSize) in C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\Controllers\ReportController.cs:line 102
+   at EmployeeTimeTracking.Data.Repository.Implementations.SearchReportsRepository.Count(SearchReportModel model)
+   at EmployeeTimeTracking._Services.Services.Implementations.ReportService.CountFound(SearchReportModel model) in C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Services\Services\Implementations\ReportService.cs:line 87
+   at EmployeeTimeTracking._Logic.Logics.Implementations.TrackingLogic.SearchReports(SearchReportModel model, PageInfoViewModel pageInfo) in C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking. Logic\Logics\Implementations\TrackingLogic.cs:line 90
+   at EmployeeTimeTracking.Controllers.ReportController.SearchReports(SearchReportModel model, Int32 pageNumber, Int32 pageSize) in C:\Users\asemenov\source\repos\EmployeeTimeTracking\EmployeeTimeTracking\Controllers\ReportController.cs:line 102
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)

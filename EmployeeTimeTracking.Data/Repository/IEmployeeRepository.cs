@@ -1,5 +1,4 @@
-﻿using EmployeeTimeTracking.Common.Models;
-using EmployeeTimeTracking.Data.EntityModels;
+﻿using EmployeeTimeTracking.Data.EntityModels;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -8,14 +7,15 @@ namespace EmployeeTimeTracking.Data.Repository
 {
     public interface IEmployeeRepository
     {
-        Task<EmployeeModel> InsertAsync(EmployeeModel model);
+        Task<EmployeeEntityModel> InsertAsync(EmployeeEntityModel model);
 
-        Task<EmployeeModel> UpdateAsync(EmployeeModel model);
+        Task<EmployeeEntityModel> UpdateAsync(EmployeeEntityModel model);
 
-        Task<EmployeeModel> DeleteAsync(Guid id);
+        Task<EmployeeEntityModel> DeleteAsync(Guid id);
 
-        Task<IEnumerable<EmployeeModel>> GetAll();
+        Task<EmployeeEntityModel> Get(Guid employeeId);
 
-        Task<EmployeeModel> GetById(Guid employeeId);
+        Task<IEnumerable<EmployeeEntityModel>> GetAll();
+
     }
 }

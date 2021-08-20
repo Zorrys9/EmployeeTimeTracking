@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EmployeeTimeTracking.Common.ViewModels
+namespace EmployeeTimeTracking.Logic.ViewModels
 {
     /// <summary>
     /// Модель представления отчета

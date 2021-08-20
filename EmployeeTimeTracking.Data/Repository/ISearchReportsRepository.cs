@@ -1,4 +1,5 @@
-﻿using EmployeeTimeTracking.Common.ViewModels;
+﻿using EmployeeTimeTracking.Common.CommonModels;
+using EmployeeTimeTracking.Data.EntityModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace EmployeeTimeTracking.Data.Repository
 {
     public interface ISearchReportsRepository
     {
-        Task<ICollection<EmployeeReportViewModel>> SearchReports(SearchReportsViewModel model, PageInfoViewModel pageInfo);
-        Task<int> Count(SearchReportsViewModel model);
+        Task<ICollection<DetailReportEntityModel>> Search(SearchReportModel model, int pageSize, int currentPage);
+        Task<int> Count(SearchReportModel model);
     }
 }

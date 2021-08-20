@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EmployeeTimeTracking.Common.ViewModels
+namespace EmployeeTimeTracking.Logic.ViewModels
 { 
     /// <summary>
     /// Модель представленя сотрудника
@@ -38,6 +38,9 @@ namespace EmployeeTimeTracking.Common.ViewModels
         /// Должность сотрудника
         /// </summary>
         public string Position { get; set; }
+        /// <summary>
+        /// Аватар сотрудника
+        /// </summary>
         public IFormFile Avatar { get; set; }
     }
 }

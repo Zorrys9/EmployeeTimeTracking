@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using EmployeeTimeTracking._Services.Services;
-using EmployeeTimeTracking.Common.Models;
-using EmployeeTimeTracking.Common.ViewModels;
+using EmployeeTimeTracking.Logic.ViewModels;
+using EmployeeTimeTracking.Services.Models;
 using EmployeeTimeTracking.Services.Services;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -39,11 +39,7 @@ namespace EmployeeTimeTracking._Logic.Logics.Implementations
             await _fileService.SaveImageAsync(model.Avatar, model.Id);
 
             var result = await _employeeService.InsertAsync(createdModel);
-            if(result == null)
-            {
-                return false;
-            }
-            return true;
+            return result != null;
         }
 
         public async Task<bool> UpdateEmployee(EmployeeViewModel model)
@@ -57,32 +53,24 @@ namespace EmployeeTimeTracking._Logic.Logics.Implementations
             }
 
             var result = await _employeeService.UpdateAsync(changedModel);
-            if (result == null)
-            {
-                return false;
-            }
-            return true;
+            return result != null;
         }
 
         public async Task<bool> DeleteEmployee(Guid id)
         {
             var result = await _employeeService.DeleteAsync(id);
-
-            if(result == null)
+            if(result != null)
             {
-                return false;
+                _fileService.DeleteImageAsync(id);
             }
 
-            _fileService.DeleteImageAsync(id);
-
-            return true;
+            return result != null;
         }
 
-        public EmployeeViewModel GetEmployeeInfo(Guid id)
+        public EmployeeViewModel GetEmployee(Guid id)
         {
             var employee = _employeeService.Get(id);
             EmployeeViewModel result = _mapper.Map<EmployeeViewModel>(employee.Result);
-
             return result;
         }
     }

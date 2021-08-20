@@ -1,4 +1,4 @@
-﻿using EmployeeTimeTracking.Common.ViewModels;
+﻿using EmployeeTimeTracking.Services.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -48,7 +48,7 @@ namespace EmployeeTimeTracking.Services.Services.Implementations
             File.Delete(image);
         }
 
-        public FileContentResult DownloadJson<T>(T item)
+        public FileContentResult GetJson<T>(T item)
         {
             var json = JsonConvert.SerializeObject(item);
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\response.json");
@@ -63,7 +63,7 @@ namespace EmployeeTimeTracking.Services.Services.Implementations
             return result;
         }
 
-        public FileContentResult DownloadXml<T>(T item)
+        public FileContentResult GetXml<T>(T item)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(item.GetType());
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\response.xml");
@@ -82,7 +82,7 @@ namespace EmployeeTimeTracking.Services.Services.Implementations
             return result;
         }
 
-        public FileContentResult DownloadTemplateReport(Guid id)
+        public FileContentResult GetTemplateReport(Guid id)
         {
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\templateReport.xlsx");
             FileContentResult result = new FileContentResult(System.IO.File.ReadAllBytes(filePath), "application/vnd.ms-excel")
@@ -92,7 +92,7 @@ namespace EmployeeTimeTracking.Services.Services.Implementations
             return result;
         }
 
-        public IEnumerable<ReportViewModel> GetReportsFromXls(IFormFile file)
+        public IEnumerable<ReportModel> GetReportsFromFile(IFormFile file)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             ExcelPackage package = new ExcelPackage(file.OpenReadStream());
@@ -100,17 +100,17 @@ namespace EmployeeTimeTracking.Services.Services.Implementations
             var fileName = file.FileName;
             var employeeId = fileName.Substring(0, fileName.LastIndexOf('.'));
             var i = 2;
-            List<ReportViewModel> result = new List<ReportViewModel>();
+            List<ReportModel> result = new List<ReportModel>();
             while (sheets.Cells[i, 2].Value != null)
             {
-                ReportViewModel viewModel = new ReportViewModel();
-                viewModel.Date = (DateTime)sheets.Cells[i, 2].Value;
-                viewModel.NumberOfHour = Convert.ToInt32(sheets.Cells[i, 3].Value);
-                viewModel.Recycling = Convert.ToInt32(sheets.Cells[i, 4].Value);
-                viewModel.ReasonForRecycling = sheets.Cells[i, 5].Value?.ToString();
-                viewModel.DescriptionWork = sheets.Cells[i, 6].Value.ToString();
-                viewModel.EmployeeId = Guid.Parse(employeeId);
-                result.Add(viewModel);
+                ReportModel model = new ReportModel();
+                model.Date = (DateTime)sheets.Cells[i, 2].Value;
+                model.NumberOfHour = Convert.ToInt32(sheets.Cells[i, 3].Value);
+                model.Recycling = Convert.ToInt32(sheets.Cells[i, 4].Value);
+                model.ReasonForRecycling = sheets.Cells[i, 5].Value?.ToString();
+                model.DescriptionWork = sheets.Cells[i, 6].Value.ToString();
+                model.EmployeeId = Guid.Parse(employeeId);
+                result.Add(model);
                 i++;
             }
             return result;

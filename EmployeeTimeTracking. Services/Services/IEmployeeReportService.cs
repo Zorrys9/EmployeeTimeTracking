@@ -1,5 +1,4 @@
-﻿using EmployeeTimeTracking.Common.Models;
-using EmployeeTimeTracking.Common.ViewModels;
+﻿using EmployeeTimeTracking.Services.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +36,7 @@ namespace EmployeeTimeTracking.Services.Services
         /// <param name="employeeId">Идентификатор пользователя</param>
         /// <param name="pageInfo">Информация о текущей странице</param>
         /// <returns>Список моделей связи</returns>
-        Task<IEnumerable<EmployeeReportModel>> GetByEmployeeForPage(Guid employeeId, PageInfoViewModel pageInfo);
+        Task<IEnumerable<EmployeeReportModel>> GetByEmployeeForPage(Guid employeeId, int pageSize, int currentPage);
         /// <summary>
         /// Получение количества записей в таблице связей по идентификатору сотрудника
         /// </summary>

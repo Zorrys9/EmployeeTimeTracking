@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EmployeeTimeTracking.Common.ViewModels
+namespace EmployeeTimeTracking.Logic.ViewModels
 {
     /// <summary>
     /// Модель представления информации о странице
@@ -49,6 +49,9 @@ namespace EmployeeTimeTracking.Common.ViewModels
             get { return CurrentPage < TotalPages; }
         }
 
+        /// <summary>
+        /// Провести расчет общего количества страниц
+        /// </summary>
         public void CalculateTotalPage()
         {
             TotalPages = (int)Math.Ceiling(CountItems / (double)PageSize);

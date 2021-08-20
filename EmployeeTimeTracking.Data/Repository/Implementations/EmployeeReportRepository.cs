@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using EmployeeTimeTracking.Common.Models;
-using EmployeeTimeTracking.Common.ViewModels;
 using EmployeeTimeTracking.Data.EntityModels;
 using System;
 using System.Collections.Generic;
@@ -12,30 +10,27 @@ namespace EmployeeTimeTracking.Data.Repository.Implementations
 {
     public class EmployeeReportRepository : BaseRepository<EmployeeReportEntityModel>, IEmployeeReportRepository
     {
-        private readonly IMapper _mapper;
-        public EmployeeReportRepository(string connectionString, IMapper mapper)
-            :base(connectionString)
-        {
-            _mapper = mapper;
-        }
-        public async Task<EmployeeReportModel> DeleteAsync(Guid reportId)
+        public EmployeeReportRepository(string connectionString)
+            :base(connectionString)  {   }
+
+        public async Task<EmployeeReportEntityModel> DeleteAsync(Guid reportId)
         {
             var sqlQuery = $"DELETE FROM \"EmployeeReports\" WHERE \"ReportId\" = '{reportId}'  returning *";
             var result = await GetEnemyAsync(sqlQuery);
-            return _mapper.Map<EmployeeReportModel>(result);
+            return result;
         }
 
-        public async Task<IEnumerable<EmployeeReportModel>> GetByEmployee(Guid employeeId)
+        public async Task<IEnumerable<EmployeeReportEntityModel>> GetByEmployee(Guid employeeId)
         {
             var sqlQuery = $"SELECT * FROM \"EmployeeReports\" WHERE \"EmployeeId\" = '{employeeId}'";
             var result = await GetListAsync(sqlQuery);
-            return _mapper.Map<IEnumerable<EmployeeReportModel>>(result);
+            return result;
         }
-        public async Task<IEnumerable<EmployeeReportModel>> GetByEmployeeForPage(Guid employeeId, PageInfoViewModel pageInfo)
+        public async Task<IEnumerable<EmployeeReportEntityModel>> GetByEmployeeForPage(Guid employeeId, int pageSize, int currentPage)
         {
-            var sqlQuery = $"SELECT * FROM \"EmployeeReports\" WHERE \"EmployeeId\" = '{employeeId}' LIMIT {pageInfo.PageSize} OFFSET {(pageInfo.CurrentPage - 1) * pageInfo.PageSize}";
+            var sqlQuery = $"SELECT * FROM \"EmployeeReports\" WHERE \"EmployeeId\" = '{employeeId}' LIMIT {pageSize} OFFSET {(currentPage - 1) * pageSize}";
             var result = await GetListAsync(sqlQuery);
-            return _mapper.Map<IEnumerable<EmployeeReportModel>>(result);
+            return result;
         }
         public async Task<int> CountByEmployee(Guid employeeId)
         {
@@ -51,11 +46,11 @@ namespace EmployeeTimeTracking.Data.Repository.Implementations
             return result;
         }
 
-        public async Task<EmployeeReportModel> InsertAsync(EmployeeReportModel model)
+        public async Task<EmployeeReportEntityModel> InsertAsync(EmployeeReportEntityModel model)
         {
             var sqlQuery = $"INSERT INTO \"EmployeeReports\" (\"ReportId\", \"EmployeeId\") VALUES ('{model.ReportId}', '{model.EmployeeId}')  returning *";
             var result = await GetEnemyAsync(sqlQuery);
-            return _mapper.Map<EmployeeReportModel>(result);
+            return result;
         }
     }
 }

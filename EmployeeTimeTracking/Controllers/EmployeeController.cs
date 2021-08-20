@@ -1,7 +1,7 @@
 ﻿using EmployeeTimeTracking._Logic.Logics;
 using EmployeeTimeTracking._Services.Services;
-using EmployeeTimeTracking.Common.Models;
-using EmployeeTimeTracking.Common.ViewModels;
+using EmployeeTimeTracking.Filters;
+using EmployeeTimeTracking.Logic.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -16,15 +16,14 @@ namespace EmployeeTimeTracking.Controllers
     [Route("Employees")]
     public class EmployeeController : Controller
     {
-        private readonly IEmployeeService _employeeService;
         private readonly IAccountLogic _accountLogic;
-        public EmployeeController(IEmployeeService employeeService, IAccountLogic accountLogic)
+        public EmployeeController(IAccountLogic accountLogic)
         {
-            _employeeService = employeeService;
             _accountLogic = accountLogic;
         }
 
-        [HttpPost("")]
+        [HttpPost]
+        [ValidateModel]
         public async Task<IActionResult> Insert([FromForm]EmployeeViewModel model)
         {
             if(model == null)
@@ -41,7 +40,8 @@ namespace EmployeeTimeTracking.Controllers
             return StatusCode(201);
         }
 
-        [HttpPut("")]
+        [HttpPut]
+        [ValidateModel]
         public async Task<IActionResult> Update([FromForm] EmployeeViewModel model)
         {
             if(model == null)
@@ -58,7 +58,7 @@ namespace EmployeeTimeTracking.Controllers
             return Ok();
         }
 
-        [HttpDelete("")]
+        [HttpDelete]
         public async Task<IActionResult> Delete([FromForm]Guid id)
         {
             var result = await _accountLogic.DeleteEmployee(id);
@@ -71,10 +71,10 @@ namespace EmployeeTimeTracking.Controllers
             return Ok();
         }
 
-        [HttpGet("Employee/{id}")]
+        [HttpGet("{id}")]
         public IActionResult GetEmployeeInfo([FromRoute]Guid id)
         {
-            var result = _accountLogic.GetEmployeeInfo(id);
+            var result = _accountLogic.GetEmployee(id);
             return Content(JsonConvert.SerializeObject(result), "application/json");
         }
     }

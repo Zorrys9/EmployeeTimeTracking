@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace EmployeeTimeTracking.Common.ViewModels
+namespace EmployeeTimeTracking.Logic.ViewModels
 {
     /// <summary>
     /// Модель представления общего отчета по сотруднику

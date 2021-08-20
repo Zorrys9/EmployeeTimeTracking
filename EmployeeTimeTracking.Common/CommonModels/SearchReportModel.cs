@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EmployeeTimeTracking.Common.ViewModels
+namespace EmployeeTimeTracking.Common.CommonModels
 {
-    /// <summary>
-    /// Модель представления поиска отчетов
-    /// </summary>
-    public class SearchReportsViewModel
+    public class SearchReportModel
     {
         /// <summary>
         /// Фамилия сотрудника

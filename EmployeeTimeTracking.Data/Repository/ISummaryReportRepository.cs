@@ -1,4 +1,4 @@
-﻿using EmployeeTimeTracking.Common.ViewModels;
+﻿using EmployeeTimeTracking.Data.EntityModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace EmployeeTimeTracking.Data.Repository
 {
     public interface ISummaryReportRepository
     {
-        Task<SummaryReportViewModel> GetById(Guid id);
-        Task<IEnumerable<SummaryReportViewModel>> GetAll();
+        Task<SummaryReportEntityModel> Get(Guid id);
+        Task<IEnumerable<SummaryReportEntityModel>> GetAll();
     }
 }

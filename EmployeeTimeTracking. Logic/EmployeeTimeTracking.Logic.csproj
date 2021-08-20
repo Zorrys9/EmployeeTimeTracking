@@ -6,6 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <None Remove="Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\EmployeeTimeTracking. Services\EmployeeTimeTracking.Services.csproj" />
     <ProjectReference Include="..\EmployeeTimeTracking.Common\EmployeeTimeTracking.Common.csproj" />
   </ItemGroup>

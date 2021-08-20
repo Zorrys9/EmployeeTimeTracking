@@ -51,19 +51,10 @@ namespace EmployeeTimeTracking
             var builder = new ContainerBuilder();
             ILogger logger = new LoggerConfiguration().ReadFrom.Configuration(Configuration).CreateLogger();
 
-
             builder.Properties.Add("ConnectionString", connectionString);
             builder.Populate(services);
             builder.RegisterModule<AutoFacModule>();
-            builder.ComponentRegistryBuilder.Registered += (sender, args) =>
-            {
-                args.ComponentRegistration.PipelineBuilding += (sendr, pipeline) =>
-                {
-                    pipeline.Use(new ExceptionMiddleware(logger));
-                };
-            };
-
-            builder.RegisterType<ExceptionMiddleware>();
+           
 
             var container = builder.Build();
 
@@ -81,6 +72,7 @@ namespace EmployeeTimeTracking
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+            app.UseMiddleware<ExceptionHandlerMiddleware>();
             app.UseStaticFiles();
 
             app.UseRouting();

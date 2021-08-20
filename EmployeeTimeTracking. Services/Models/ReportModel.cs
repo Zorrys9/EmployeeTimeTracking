@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EmployeeTimeTracking.Common.Models
+namespace EmployeeTimeTracking.Services.Models
 {
     public class ReportModel
     {
@@ -14,5 +14,6 @@ namespace EmployeeTimeTracking.Common.Models
         public int Recycling { get; set; }
         public string ReasonForRecycling { get; set; }
         public string DescriptionWork { get; set; }
+        public Guid EmployeeId { get; set; }
     }
 }

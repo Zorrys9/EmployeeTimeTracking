@@ -1,4 +1,4 @@
-﻿using EmployeeTimeTracking.Common.Models;
+﻿using EmployeeTimeTracking.Services.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

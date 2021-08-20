@@ -84,8 +84,5 @@ namespace EmployeeTimeTracking.Modules
                 .As<IAccountLogic>()
                 .InstancePerLifetimeScope();
         }
-
-
-
     }
 }

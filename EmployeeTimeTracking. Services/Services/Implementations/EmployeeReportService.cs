@@ -1,10 +1,9 @@
-﻿using EmployeeTimeTracking.Common.Models;
-using EmployeeTimeTracking.Common.ViewModels;
+﻿using AutoMapper;
+using EmployeeTimeTracking.Data.EntityModels;
 using EmployeeTimeTracking.Data.Repository;
+using EmployeeTimeTracking.Services.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace EmployeeTimeTracking.Services.Services.Implementations
@@ -15,24 +14,29 @@ namespace EmployeeTimeTracking.Services.Services.Implementations
     public class EmployeeReportService : IEmployeeReportService
     {
         private readonly IEmployeeReportRepository _employeeReportRepository;
+        private readonly IMapper _mapper;
 
-        public EmployeeReportService(IEmployeeReportRepository employeeReportRepository)
+        public EmployeeReportService(IEmployeeReportRepository employeeReportRepository, IMapper mapper)
         {
             _employeeReportRepository = employeeReportRepository;
+            _mapper = mapper;
         }
 
         public async Task<EmployeeReportModel> DeleteAsync(Guid reportId)
         {
-            return await _employeeReportRepository.DeleteAsync(reportId);
+            var result = await _employeeReportRepository.DeleteAsync(reportId);
+            return _mapper.Map<EmployeeReportModel>(result);
         }
 
         public async Task<IEnumerable<EmployeeReportModel>> GetByEmployee(Guid employeeId)
         {
-            return await _employeeReportRepository.GetByEmployee(employeeId);
+            var result = await _employeeReportRepository.GetByEmployee(employeeId);
+            return _mapper.Map<IEnumerable<EmployeeReportModel>>(result);
         }
-        public async Task<IEnumerable<EmployeeReportModel>> GetByEmployeeForPage(Guid employeeId, PageInfoViewModel pageInfo)
+        public async Task<IEnumerable<EmployeeReportModel>> GetByEmployeeForPage(Guid employeeId, int pageSize, int currentPage)
         {
-            return await _employeeReportRepository.GetByEmployeeForPage(employeeId, pageInfo);
+            var result = await _employeeReportRepository.GetByEmployeeForPage(employeeId, pageSize, currentPage);
+            return _mapper.Map<IEnumerable<EmployeeReportModel>>(result);
         }
         public async Task<int> CountByEmployee(Guid employeeId)
         {
@@ -46,7 +50,9 @@ namespace EmployeeTimeTracking.Services.Services.Implementations
 
         public async Task<EmployeeReportModel> InsertAsync(EmployeeReportModel model)
         {
-            return await _employeeReportRepository.InsertAsync(model);
+            var newModel = _mapper.Map<EmployeeReportEntityModel>(model);
+            var result = await _employeeReportRepository.InsertAsync(newModel);
+            return _mapper.Map<EmployeeReportModel>(result);
         }
     }
 }

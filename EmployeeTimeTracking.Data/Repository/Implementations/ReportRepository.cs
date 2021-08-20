@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using EmployeeTimeTracking.Common.Models;
-using EmployeeTimeTracking.Common.ViewModels;
 using EmployeeTimeTracking.Data.EntityModels;
 using System;
 using System.Collections.Generic;
@@ -10,32 +8,28 @@ namespace EmployeeTimeTracking.Data.Repository.Implementations
 {
     public class ReportRepository : BaseRepository<ReportEntityModel>, IReportRepository
     {
-        private readonly IMapper _mapper;
-        public ReportRepository(string connectionString, IMapper mapper)
-            : base(connectionString)
-        {
-            _mapper = mapper;
-        }
+        public ReportRepository(string connectionString)
+            : base(connectionString)  {     }
 
-        public async Task<ReportModel> DeleteAsync(Guid id)
+        public async Task<ReportEntityModel> DeleteAsync(Guid id)
         {
             var sqlQuery = $"DELETE FROM \"Report\" WHERE \"Id\" = '{id}'  returning *";
             var result = await GetEnemyAsync(sqlQuery);
-            return _mapper.Map<ReportModel>(result);
+            return result;
         }
 
-        public async Task<IEnumerable<ReportModel>> GetAllForPage(PageInfoViewModel pageInfo)
+        public async Task<IEnumerable<ReportEntityModel>> GetAllForPage(int pageSize, int currentPage)
         {
-            var sqlQuery = $"SELECT * FROM \"Report\" LIMIT {pageInfo.PageSize} OFFSET {(pageInfo.CurrentPage - 1) * pageInfo.PageSize}";
+            var sqlQuery = $"SELECT * FROM \"Report\" LIMIT {pageSize} OFFSET {(currentPage - 1) * pageSize}";
             var result = await GetListAsync(sqlQuery);
-            return _mapper.Map<IEnumerable<ReportModel>>(result);
+            return result;
         }
 
-        public async Task<IEnumerable<ReportModel>> GetAll()
+        public async Task<IEnumerable<ReportEntityModel>> GetAll()
         {
             var sqlQuery = $"SELECT * FROM \"Report\"";
             var result = await GetListAsync(sqlQuery);
-            return _mapper.Map<IEnumerable<ReportModel>>(result);
+            return result;
         }
         public async Task<int> Count()
         {
@@ -44,25 +38,25 @@ namespace EmployeeTimeTracking.Data.Repository.Implementations
             return Convert.ToInt32(result);
         }
 
-        public async Task<ReportModel> GetById(Guid id)
+        public async Task<ReportEntityModel> Get(Guid id)
         {
             var sqlQuery = $"SELECT * FROM \"Report\" WHERE \"Id\" = '{id}'";
             var result = await GetEnemyAsync(sqlQuery);
-            return _mapper.Map<ReportModel>(result);
+            return result;
         }
 
-        public async Task<ReportModel> InsertAsync(ReportModel model)
+        public async Task<ReportEntityModel> InsertAsync(ReportEntityModel model)
         {
             var sqlQuery = $"INSERT INTO \"Report\" (\"Id\",  \"Date\", \"NumberOfHour\", \"Recycling\", \"ReasonForRecycling\", \"DescriptionWork\") VALUES ('{Guid.NewGuid()}','{model.Date.ToShortDateString()}','{model.NumberOfHour}','{model.Recycling}','{model.ReasonForRecycling}','{model.DescriptionWork}')  returning *";
-            var result = await ExecuteAsync(sqlQuery);
-            return _mapper.Map<ReportModel>(result);
+            var result = await GetEnemyAsync(sqlQuery);
+            return result;
         }
 
-        public async Task<ReportModel> UpdateAsync(ReportModel model)
+        public async Task<ReportEntityModel> UpdateAsync(ReportEntityModel model)
         {
             var sqlQuery = $"UPDATE \"Report\" SET  \"Date\"='{model.Date.ToShortDateString()}',\"NumberOfHour\"='{model.NumberOfHour}',\"Recycling\"='{model.Recycling}',\"ReasonForRecycling\"='{model.ReasonForRecycling}',\"DescriptionWork\"='{model.DescriptionWork}' WHERE \"Id\" = '{model.Id}'  returning *";
-            var result = await ExecuteAsync(sqlQuery);
-            return _mapper.Map<ReportModel>(result);
+            var result = await GetEnemyAsync(sqlQuery);
+            return result;
         }
 
     }

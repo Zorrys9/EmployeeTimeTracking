@@ -17,7 +17,6 @@ namespace EmployeeTimeTracking.Data.EntityModels
         [Required]
         public Guid EmployeeId { get; set; }
 
-
         public ReportEntityModel Report { get; set; }
 
         public EmployeeEntityModel Employee { get; set; }

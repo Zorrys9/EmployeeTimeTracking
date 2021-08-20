@@ -1,4 +1,4 @@
-﻿using EmployeeTimeTracking.Common.ViewModels;
+﻿using EmployeeTimeTracking.Logic.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ namespace EmployeeTimeTracking._Logic.Logics
         Task<bool> CreateEmployee(EmployeeViewModel model);
         Task<bool> UpdateEmployee(EmployeeViewModel model);
         Task<bool> DeleteEmployee(Guid id);
-        EmployeeViewModel GetEmployeeInfo(Guid id);
+        EmployeeViewModel GetEmployee(Guid id);
 
     }
 }

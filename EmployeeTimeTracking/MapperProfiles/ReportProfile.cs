@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using EmployeeTimeTracking.Common.Models;
-using EmployeeTimeTracking.Common.ViewModels;
 using EmployeeTimeTracking.Data.EntityModels;
+using EmployeeTimeTracking.Logic.ViewModels;
+using EmployeeTimeTracking.Services.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +22,11 @@ namespace EmployeeTimeTracking.MapperProfiles
                 .ForMember(view => view.Recycling, view => view.MapFrom(model => model.Recycling > 0))
                 .ForMember(view => view.Date, view => view.MapFrom(model => model.Date.ToShortDateString()))
                 .ReverseMap();
+
+            CreateMap<SummaryReportModel, SummaryReportEntityModel>().ReverseMap();
+            CreateMap<SummaryReportModel, SummaryReportViewModel>().ReverseMap();
+
+            CreateMap<EmployeeReportModel, DetailReportEntityModel>().ReverseMap();
         }
     }   
 }
